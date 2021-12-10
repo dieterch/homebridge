@@ -270,26 +270,43 @@
             "type": "lightbulb",
             "name": "Schlafzimmer Dieter Lampe",
             "topics": {
-              "getOn": {
-                "topic": "zigbee2mqtt/SchlafzimmerDieter",
-                "apply": "return JSON.parse(message).state;"
-              },
-              "setOn": {
-                "topic": "zigbee2mqtt/SchlafzimmerDieter/set",
-                "apply": "return JSON.stringify({ state: message})"
-              },
-              "getHSV": {
-                "topic": "zigbee2mqtt/SchlafzimmerDieter",
-                "apply": "function cie_to_rgb(r,s,t){void 0===t&&(t=254);var a=1-r-s,h=(t/254).toFixed(2),o=h/s*r,e=h/s*a,v=1.656492*o-.354851*h-.255038*e,i=.707196*-o+1.655397*h+.036152*e,n=.051713*o-.121364*h+1.01153*e;return v>n&&v>i&&v>1?(i/=v,n/=v,v=1):i>n&&i>v&&i>1?(v/=i,n/=i,i=1):n>v&&n>i&&n>1&&(v/=n,i/=n,n=1),v=v<=.0031308?12.92*v:1.055*Math.pow(v,1/2.4)-.055,i=i<=.0031308?12.92*i:1.055*Math.pow(i,1/2.4)-.055,n=n<=.0031308?12.92*n:1.055*Math.pow(n,1/2.4)-.055,v=Math.round(255*v),i=Math.round(255*i),n=Math.round(255*n),isNaN(v)&&(v=0),isNaN(i)&&(i=0),isNaN(n)&&(n=0),[v,i,n]}function RGBtoHSV(r,s,t){1===arguments.length&&(s=r.g,t=r.b,r=r.r);var a,h=Math.max(r,s,t),o=Math.min(r,s,t),e=h-o,v=0===h?0:e/h,i=h/255;switch(h){case o:a=0;break;case r:a=s-t+e*(s<t?6:0),a/=6*e;break;case s:a=t-r+2*e,a/=6*e;break;case t:a=r-s+4*e,a/=6*e}return{h:a,s:v,v:i}}var m=JSON.parse(message),rgb=cie_to_rgb(m.color.x,m.color.y,m.brightness/2.55),hsv=RGBtoHSV(rgb[0],rgb[1],rgb[2]);hsv.h=360*hsv.h,hsv.s=100*hsv.s,hsv.v=254*hsv.v;var result=hsv.h.toString()+\",\"+hsv.s.toString()+\",\"+(m.brightness/2.54).toString();return result;"
-              },
-              "setHSV": {
-                "topic": "zigbee2mqtt/SchlafzimmerDieter/set",
-                "apply": "function HSVtoRGB(r,a,e){var t,s,o,b,c,n,i,u;switch(1===arguments.length&&(a=r.s,e=r.v,r=r.h),n=e*(1-a),i=e*(1-(c=6*r-(b=Math.floor(6*r)))*a),u=e*(1-(1-c)*a),b%6){case 0:t=e,s=u,o=n;break;case 1:t=i,s=e,o=n;break;case 2:t=n,s=e,o=u;break;case 3:t=n,s=i,o=e;break;case 4:t=u,s=n,o=e;break;case 5:t=e,s=n,o=i}return{r:Math.round(255*t),g:Math.round(255*s),b:Math.round(255*o)}}function ScaledHSVtoRGB(r,a,e){return HSVtoRGB(r/360,a/100,e/100)}function rgb_to_cie(r,a,e){var t=.664511*(r=r>.04045?Math.pow((r+.055)/1.055,2.4):r/12.92)+.154324*(a=a>.04045?Math.pow((a+.055)/1.055,2.4):a/12.92)+.162028*(e=e>.04045?Math.pow((e+.055)/1.055,2.4):e/12.92),s=.283881*r+.668433*a+.047685*e,o=88e-6*r+.07231*a+.986039*e,b=(t/(t+s+o)).toFixed(4),c=(s/(t+s+o)).toFixed(4);return isNaN(b)&&(b=0),isNaN(c)&&(c=0),[b,c]}var params=message.split(\",\"),result={},rgb=ScaledHSVtoRGB(params[0],params[1],100),xy=rgb_to_cie(rgb.r,rgb.g,rgb.b);result.color={x:xy[0],y:xy[1]};var b=2.54*params[2];result.brightness=b;return JSON.stringify(result);"
-              }
+                "getOn": {
+                    "topic": "zigbee2mqtt/SchlafzimmerDieter",
+                    "apply": "return JSON.parse(message).state;"
+                },
+                "setOn": {
+                    "topic": "zigbee2mqtt/SchlafzimmerDieter/set",
+                    "apply": "return JSON.stringify({ state: message})"
+                },
+                "getHSV": {
+                    "topic": "zigbee2mqtt/SchlafzimmerDieter",
+                    "apply": "function cie_to_rgb(r,s,t){void 0===t&&(t=254);var a=1-r-s,h=(t/254).toFixed(2),o=h/s*r,e=h/s*a,v=1.656492*o-.354851*h-.255038*e,i=.707196*-o+1.655397*h+.036152*e,n=.051713*o-.121364*h+1.01153*e;return v>n&&v>i&&v>1?(i/=v,n/=v,v=1):i>n&&i>v&&i>1?(v/=i,n/=i,i=1):n>v&&n>i&&n>1&&(v/=n,i/=n,n=1),v=v<=.0031308?12.92*v:1.055*Math.pow(v,1/2.4)-.055,i=i<=.0031308?12.92*i:1.055*Math.pow(i,1/2.4)-.055,n=n<=.0031308?12.92*n:1.055*Math.pow(n,1/2.4)-.055,v=Math.round(255*v),i=Math.round(255*i),n=Math.round(255*n),isNaN(v)&&(v=0),isNaN(i)&&(i=0),isNaN(n)&&(n=0),[v,i,n]}function RGBtoHSV(r,s,t){1===arguments.length&&(s=r.g,t=r.b,r=r.r);var a,h=Math.max(r,s,t),o=Math.min(r,s,t),e=h-o,v=0===h?0:e/h,i=h/255;switch(h){case o:a=0;break;case r:a=s-t+e*(s<t?6:0),a/=6*e;break;case s:a=t-r+2*e,a/=6*e;break;case t:a=r-s+4*e,a/=6*e}return{h:a,s:v,v:i}}var m=JSON.parse(message),rgb=cie_to_rgb(m.color.x,m.color.y,m.brightness/2.55),hsv=RGBtoHSV(rgb[0],rgb[1],rgb[2]);hsv.h=360*hsv.h,hsv.s=100*hsv.s,hsv.v=254*hsv.v;var result=hsv.h.toString()+\",\"+hsv.s.toString()+\",\"+(m.brightness/2.54).toString();return result;"
+                },
+                "setHSV": {
+                    "topic": "zigbee2mqtt/SchlafzimmerDieter/set",
+                    "apply": "function HSVtoRGB(r,a,e){var t,s,o,b,c,n,i,u;switch(1===arguments.length&&(a=r.s,e=r.v,r=r.h),n=e*(1-a),i=e*(1-(c=6*r-(b=Math.floor(6*r)))*a),u=e*(1-(1-c)*a),b%6){case 0:t=e,s=u,o=n;break;case 1:t=i,s=e,o=n;break;case 2:t=n,s=e,o=u;break;case 3:t=n,s=i,o=e;break;case 4:t=u,s=n,o=e;break;case 5:t=e,s=n,o=i}return{r:Math.round(255*t),g:Math.round(255*s),b:Math.round(255*o)}}function ScaledHSVtoRGB(r,a,e){return HSVtoRGB(r/360,a/100,e/100)}function rgb_to_cie(r,a,e){var t=.664511*(r=r>.04045?Math.pow((r+.055)/1.055,2.4):r/12.92)+.154324*(a=a>.04045?Math.pow((a+.055)/1.055,2.4):a/12.92)+.162028*(e=e>.04045?Math.pow((e+.055)/1.055,2.4):e/12.92),s=.283881*r+.668433*a+.047685*e,o=88e-6*r+.07231*a+.986039*e,b=(t/(t+s+o)).toFixed(4),c=(s/(t+s+o)).toFixed(4);return isNaN(b)&&(b=0),isNaN(c)&&(c=0),[b,c]}var params=message.split(\",\"),result={},rgb=ScaledHSVtoRGB(params[0],params[1],100),xy=rgb_to_cie(rgb.r,rgb.g,rgb.b);result.color={x:xy[0],y:xy[1]};var b=2.54*params[2];result.brightness=b;return JSON.stringify(result);"
+                }
             },
             "onValue": "ON",
             "offValue": "OFF",
-            "logMqtt": true
+            "logMqtt": false
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "lightbulb-Dimmable",
+            "name": "Esszimmer4",
+            "url": "http://localhost:1883",
+            "topics": {
+                "getOn": "zigbee2mqtt/Esszimmer4/setOn",
+                "setOn": "zigbee2mqtt/Esszimmer4/setOn",
+                "getBrightness": "zigbee2mqtt/Esszimmer4/getBrightness",
+                "setBrightness": "zigbee2mqtt/Esszimmer4/setBrightness"
+            },
+            "logMqtt": true,
+            "onValue": "ON",
+            "offValue": "OFF",
+            "otherValueOff": true,
+            "codec": "tradfri.js"
         },
         {
             "type": "statelessProgrammableSwitch",

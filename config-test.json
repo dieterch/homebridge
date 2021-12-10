@@ -1,0 +1,16 @@
+        {
+            "accessory": "mqttthing",
+            "type": "lightbulb-Dimmable",
+            "name": "Esszimmer4",
+            "topics": {
+                "getOn": "zigbee2mqtt/Esszimmer4/setOn",
+                "setOn": "zigbee2mqtt/Esszimmer4/setOn",
+                "getBrightness": "zigbee2mqtt/Esszimmer4/getBrightness",
+                "setBrightness": "zigbee2mqtt/Esszimmer4/setBrightness"
+            },
+            "logMqtt": true,
+            "onValue": "DIMMABLE",
+            "offValue": "OFF",
+            "otherValueOff": true,
+            "codec": "test-codec.js"
+        }
