@@ -1,0 +1,41 @@
+{
+  "accessory": "mqttthing",
+  "type": "lightbulb",
+  "name": "bulb",
+  "topics": {
+    "getOn": {
+      "topic": "zigbee/bulb",
+      "apply": "return JSON.parse(message).state;"
+    },
+    "setOn": {
+      "topic": "zigbee/bulb/set",
+      "apply": "return JSON.stringify({ state: message})"
+    },
+    "getBrightness": {
+      "topic": "zigbee/bulb",
+      "apply": "return (JSON.parse(message).brightness / 2.54);"
+    },
+    "setBrightness": {
+      "topic": "zigbee/bulb/set",
+      "apply": "return JSON.stringify({ brightness: (parseInt(message) * 2.54)})"
+    },
+    "getRGB": {
+      "topic": "zigbee/bulb",
+      "apply": "var x = JSON.parse(message).color.x; var y = JSON.parse(message).color.y; var z = 1.0 - x - y; var Y1 = JSON.parse(message).brightness / 2.54; var X1 = (Y1 / y) * x; var Z1 = (Y1 / y) * z; var r = X1 * 1.612 - Y1 * 0.203 - Z1 * 0.302; var g = -X1 * 0.509 + Y1 * 1.412 + Z1 * 0.066; var b = X1 * 0.026 - Y1 * 0.072 + Z1 * 0.962; return r.toString() + ',' + g.toString() + ',' + b.toString();"
+    },
+    "setRGB": {
+      "topic": "zigbee/bulb/set",
+      "apply": "return JSON.stringify({ color: { r:parseInt(message.split(',')[0]), g:parseInt(message.split(',')[1]), b:parseInt(message.split(',')[2])}});"
+    },
+    "getWhite": {
+      "topic": "zigbee/bulb",
+      "apply": "return (JSON.parse(message).brightness / 2.54).toString"
+    },
+    "setWhite": {
+      "topic": "zigbee/bulb/set",
+      "apply": "return JSON.stringify({ brightness: parseInt(message) * 2.54 });"
+    }
+  },
+  "onValue": "ON",
+  "offValue": "OFF"
+}

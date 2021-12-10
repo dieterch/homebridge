@@ -1,0 +1,31 @@
+{
+    "accessory": "mqttthing",
+    "type": "lightbulb",
+    "name": "Schlafzimmer Dieter Lampe",
+    "caption": "Schlafzimmer Dieter Lampe",
+    "topics": {
+        "getOn": "zigbee2mqtt/SchlafzimmerDieter/get",
+        "setOn": "zigbee2mqtt/SchlafzimmerDieter/set",
+        "getBrightness": {
+            "topic": "zigbee2mqtt/SchlafzimmerDieter/get",
+            "apply": "return JSON.stringify({\"brightness\": \"\"});"
+        },
+        "setBrightness": {
+            "topic": "zigbee2mqtt/SchlafzimmerDieter/set",
+            "apply": "return JSON.stringify({\"brightness\": Math.round( message * 254/100 )});"
+        },
+        "setWhite": "zigbee2mqtt/SchlafzimmerDieter",
+        "getRGBW": {
+            "topic": "zigbee2mqtt/SchlafzimmerDieter/get",
+            "apply": "console.log('get:',message);"
+        },
+        "setRGBW": {
+            "topic": "zigbee2mqtt/SchlafzimmerDieter/set",
+            "apply": "[r,g,b]=message.split(\",\");console.log(\"msg:\",message,\"rgb:\",r,g,b);[r,g,b]=[r/255,g/255,b/255];X=r*0.664511+g*0.154324+b*0.162028;Y=r*0.283881+g*0.668433+b*0.047685;Z=r*0.000088+g*0.072310+b*0.986039;x=(X/(X+Y+Z));y=(Y/(X+Y+Z));x=isNaN(x)?0:x.toFixed(6);y=isNaN(y)?0:y.toFixed(6); console.log('set:',r,g,b, x, y); return JSON.stringify({\"color\": {\"x\": x, \"y\": y}})"
+        }
+    },
+    "integerValue": "false",
+    "onValue": "ON",
+    "offValue": "OFF",
+    "logMqtt": true
+}
