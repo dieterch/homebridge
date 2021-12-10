@@ -44,7 +44,7 @@ function init( params ) {
     let { log, config, publish, notify } = params;
 
     setTimeout( () => {
-        let msg = `Hello from tradfri.js. This is ${config.name}.`;
+        let msg = `${config.name} registered with tradfri.js.`;
         log( msg );
 
         // update state
@@ -104,6 +104,16 @@ function init( params ) {
         return JSON.stringify(result);
     }
 
+    function encode_ColorTemperature( message ) {
+        log( "encode: got color_temp message: " + message );
+        return JSON.stringify({"color_temp": Math.round(message * 204/360 + 170 + 2/3 )})
+    }
+
+    function decode_ColorTemperature( message ) {
+        log( "decode: got color_temp message: " + message );
+        return JSON.stringify({"color_temp": Math.round(message * 204/360 + 170 + 2/3 )})
+    }
+
     function encode_brightness( message ) {
         // scale up to 0-255 range
         // log( "encode: brightness out: " + message );
@@ -148,6 +158,10 @@ function init( params ) {
             HSV: {
                 encode: encode_HSV,
                 decode: decode_HSV
+            },
+            color: {
+                encode: encode_ColorTemperature,
+                decode: decode_ColorTemperature
             }
         }
     };
