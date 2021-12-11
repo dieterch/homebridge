@@ -10,7 +10,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Kueche Arbeit Licht",
-            "#url": "http://192.168.15.100:1883",
             "caption": "KUE_ArbeitsLicht",
             "topics": {
                 "getOn": "zwave/Kueche/3/37/2/0",
@@ -24,7 +23,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Kueche Tisch Licht",
-            "#url": "http://192.168.15.100:1883",
             "caption": "KUE_TischLicht",
             "topics": {
                 "getOn": "zwave/Kueche/3/37/1/0",
@@ -38,7 +36,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer Schalter 1",
-            "#url": "http://192.168.15.65:1883",
             "caption": "Wohnzimmer Schalter 1",
             "topics": {
                 "getOn": "zwave/Wohnzimmer/5/37/2/0",
@@ -52,7 +49,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer Schalter 2",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer Schalter 2",
             "topics": {
                 "getOn": "zwave/Wohnzimmer/7/37/1/0",
@@ -66,7 +62,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer TV BackSchalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer TV BackSchalter",
             "topics": {
                 "getOn": "zwave/Wohnzimmer/4/37/1/0",
@@ -80,7 +75,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Flur Licht Schalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Flur Licht Schalter",
             "topics": {
                 "getOn": "shellies/shelly1-554C88/relay/0",
@@ -94,7 +88,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Bad Deckenlicht Schalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Bad_Deckenlicht",
             "topics": {
                 "getOn": "shellies/shellyswitch-1349E9/relay/0",
@@ -108,7 +101,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Bad Spiegellicht Schalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Bad_Spiegellicht",
             "topics": {
                 "getOn": "shellies/shellyswitch-1349E9/relay/1",
@@ -122,7 +114,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "WC Licht Schalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "WC_Licht",
             "topics": {
                 "getOn": "shellies/shelly1-2C1435/relay/0",
@@ -136,7 +127,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Esszimmer Licht Schalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Esszimmer_Licht",
             "topics": {
                 "getOn": "shellies/shelly1-32CE66/relay/0",
@@ -150,7 +140,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer Regal Schalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer_Regal_Licht",
             "topics": {
                 "getOn": "shellies/shellyplug-s-040D25/relay/0",
@@ -164,7 +153,6 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Schlafzimmer Dieter Deckenlichtschalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Schlafzimmer_Dieter_Deckenlicht",
             "topics": {
                 "getOn": "shellies/shelly1-058ABE/relay/0",
@@ -176,9 +164,25 @@
         },
         {
             "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Schlafzimmer Dieter",
+            "caption": "Schlafzimmer Dieter",
+            "topics": {
+                "getOn": "zigbee2mqtt/SchlafzimmerDieter/setOn",
+                "setOn": "zigbee2mqtt/SchlafzimmerDieter/setOn",
+                "getBrightness": "zigbee2mqtt/SchlafzimmerDieter/getBrightness",
+                "setBrightness": "zigbee2mqtt/SchlafzimmerDieter/setBrightness"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
+        },
+        {
+            "accessory": "mqttthing",
             "type": "switch",
             "name": "Schlafzimmer Susi Deckenlichtschalter",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Schlafzimmer_Susi_Deckenlicht",
             "topics": {
                 "getOn": "shellies/shelly1-5B2B93/relay/0",
@@ -191,8 +195,31 @@
         {
             "accessory": "mqttthing",
             "type": "lightbulb",
+            "name": "Schlafzimmer Susi",
+            "caption": "Schlafzimmer Susi",
+            "topics": {
+                "getOn": "zigbee2mqtt/SchlafzimmerSusi/get",
+                "setOn": "zigbee2mqtt/SchlafzimmerSusi/set",
+                "getBrightness": "zigbee2mqtt/SchlafzimmerSusi/getBrightness",
+                "setBrightness": "zigbee2mqtt/SchlafzimmerSusi/setBrightness",
+                "getColorTemperature": {
+                    "topic": "zigbee2mqtt/SchlafzimmerSusi/get",
+                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
+                },
+                "setColorTemperature": {
+                    "topic": "zigbee2mqtt/SchlafzimmerSusi/set",
+                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
+                }
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "lightbulb",
             "name": "Stehlampe oberes Licht",
-            "#url": "http://192.168.15.100:1883",
             "caption": "StehlampeOben",
             "topics": {
                 "getOn": "zigbee2mqtt/StehlampeOben/setOn",
@@ -210,7 +237,6 @@
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Stehlampe unteres Licht",
-            "#url": "http://192.168.15.100:1883",
             "caption": "StehlampeUnten",
             "topics": {
                 "getOn": "zigbee2mqtt/StehlampeUnten/setOn",
@@ -227,34 +253,7 @@
         {
             "accessory": "mqttthing",
             "type": "lightbulb",
-            "name": "Stehlampe Esszimmer",
-            "#url": "http://192.168.15.100:1883",
-            "caption": "StehlampeEsszimmer",
-            "topics": {
-                "getOn": "zigbee2mqtt/StehlampeEsszimmer/setOn",
-                "setOn": "zigbee2mqtt/StehlampeEsszimmer/setOn",
-                "getBrightness": "zigbee2mqtt/StehlampeEsszimmer/getBrightness",
-                "setBrightness": "zigbee2mqtt/StehlampeEsszimmer/setBrightness",
-                "getColorTemperature": {
-                    "topic": "zigbee2mqtt/StehlampeEsszimmer/get",
-                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
-                },
-                "setColorTemperature": {
-                    "topic": "zigbee2mqtt/StehlampeEsszimmer/set",
-                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
-                }
-            },
-            "integerValue": "false",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false,
-            "codec": "tradfri.js"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
             "name": "Wohnzimmer3",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer3",
             "topics": {
                 "getOn": "zigbee2mqtt/Wohnzimmer3/setOn",
@@ -280,7 +279,6 @@
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Wohnzimmer2",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer2",
             "topics": {
                 "getOn": "zigbee2mqtt/Wohnzimmer2/setOn",
@@ -306,7 +304,6 @@
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Wohnzimmer1",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer1",
             "topics": {
                 "getOn": "zigbee2mqtt/Wohnzimmer1/setOn",
@@ -329,34 +326,16 @@
             "codec": "tradfri.js"
         },
         {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
-            "name": "Schlafzimmer Dieter Lampe",
-            "url": "http://localhost:1883",
-            "topics": {
-                "getOn": "zigbee2mqtt/SchlafzimmerDieter/setOn",
-                "setOn": "zigbee2mqtt/SchlafzimmerDieter/setOn",
-                "getHSV": "zigbee2mqtt/SchlafzimmerDieter/getHSV",
-                "setHSV": "zigbee2mqtt/SchlafzimmerDieter/setHSV"
-            },
-            "logMqtt": false,
-            "onValue": "ON",
-            "offValue": "OFF",
-            "otherValueOff": true,
-            "codec": "tradfri.js"
-        },
-        {
+            "_": "_____ Beginn der Sektion Esszimmer ____",
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Esszimmer1",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Esszimmer1",
             "topics": {
                 "getOn": "zigbee2mqtt/Esszimmer1/setOn",
                 "setOn": "zigbee2mqtt/Esszimmer1/setOn",
                 "getBrightness": "zigbee2mqtt/Esszimmer1/getBrightness",
-                "setBrightness": "zigbee2mqtt/Esszimmer1/setBrightness"
-            },
+                "setBrightness": "zigbee2mqtt/Esszimmer1/setBrightness"           },
             "integerValue": "false",
             "onValue": "ON",
             "offValue": "OFF",
@@ -367,21 +346,14 @@
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Esszimmer2",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Esszimmer2",
             "topics": {
                 "getOn": "zigbee2mqtt/Esszimmer2/setOn",
                 "setOn": "zigbee2mqtt/Esszimmer2/setOn",
                 "getBrightness": "zigbee2mqtt/Esszimmer2/getBrightness",
                 "setBrightness": "zigbee2mqtt/Esszimmer2/setBrightness",
-                "getColorTemperature": {
-                    "topic": "zigbee2mqtt/Esszimmer2/get",
-                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
-                },
-                "setColorTemperature": {
-                    "topic": "zigbee2mqtt/Esszimmer2/set",
-                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
-                }
+                "getColorTemperature": "zigbee2mqtt/Esszimmer2/getColorTemperature",
+                "setColorTemperature": "zigbee2mqtt/Esszimmer2/setColorTemperature" 
             },
             "integerValue": "false",
             "onValue": "ON",
@@ -393,7 +365,6 @@
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Esszimmer3",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Esszimmer3",
             "topics": {
                 "getOn": "zigbee2mqtt/Esszimmer3/setOn",
@@ -411,7 +382,6 @@
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Esszimmer4",
-            "url": "http://localhost:1883",
             "topics": {
                 "getOn": "zigbee2mqtt/Esszimmer4/setOn",
                 "setOn": "zigbee2mqtt/Esszimmer4/setOn",
@@ -425,9 +395,45 @@
             "codec": "tradfri.js"
         },
         {
+            "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Esszimmer5",
+            "#url": "http://localhost:1883",
+            "topics": {
+                "getOn": "zigbee2mqtt/Esszimmer5/setOn",
+                "setOn": "zigbee2mqtt/Esszimmer5/setOn",
+                "getHSV": "zigbee2mqtt/Esszimmer5/getHSV",
+                "setHSV": "zigbee2mqtt/Esszimmer5/setHSV"
+            },
+            "logMqtt": false,
+            "onValue": "ON",
+            "offValue": "OFF",
+            "otherValueOff": true,
+            "codec": "tradfri.js"
+        },
+        {
+            "_": "_____ Ende der Sektion Esszimmer ____",
+            "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Esszimmer Stehlampe",
+            "caption": "Esszimmer Stehlampe",
+            "topics": {
+                "getOn": "zigbee2mqtt/StehlampeEsszimmer/setOn",
+                "setOn": "zigbee2mqtt/StehlampeEsszimmer/setOn",
+                "getBrightness": "zigbee2mqtt/StehlampeEsszimmer/getBrightness",
+                "setBrightness": "zigbee2mqtt/StehlampeEsszimmer/setBrightness",
+                "getColorTemperature": "zigbee2mqtt/StehlampeEsszimmer/getColorTemperature",
+                "setColorTemperature": "zigbee2mqtt/StehlampeEsszimmer/setColorTemperature"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
+        },
+        {
             "type": "statelessProgrammableSwitch",
             "name": "Flur Remote",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Flur Remote",
             "topics": {
                 "getSwitch": [
@@ -467,7 +473,6 @@
         {
             "type": "statelessProgrammableSwitch",
             "name": "Wohnzimmer Remote",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Wohnzimmer Remote",
             "topics": {
                 "getSwitch": [
@@ -507,7 +512,6 @@
         {
             "type": "statelessProgrammableSwitch",
             "name": "IKEADimmer1",
-            "#url": "http://192.168.15.100:1883",
             "topics": {
                 "getSwitch": [
                     {
@@ -556,7 +560,6 @@
             "accessory": "mqttthing",
             "type": "motionSensor",
             "name": "Flur Motionsensor",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Flur Motionsensor",
             "topics": {
                 "getMotionDetected": {
@@ -577,7 +580,6 @@
             "accessory": "mqttthing",
             "type": "temperatureSensor",
             "name": "Flur Motionsensor Temperatur",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Flur Motionsensor Temperatur",
             "topics": {
                 "getCurrentTemperature": {
@@ -593,12 +595,11 @@
             "accessory": "mqttthing",
             "type": "lightSensor",
             "name": "Flur Motionsensor lightSensor",
-            "#url": "http://192.168.15.100:1883",
             "caption": "Flur Motionsensor lightSensor",
             "topics": {
                 "getCurrentAmbientLightLevel": {
                     "topic": "zigbee2mqtt/FlurBewegungsmelder",
-                    "apply": "return JSON.parse(message).illuminance_lux;"
+                    "apply": "var l=JSON.parse(message).illuminance_lux; return (l > 0.0001) ? l : 0.0001 ;"
                 }
             },
             "logMqtt": false

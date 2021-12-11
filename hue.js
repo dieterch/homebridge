@@ -6,8 +6,9 @@
 
  'use strict';
 
- /*
-  * Functions to convert HSV colors to RGB colors values for lightbulbs
+
+ /**
+  * Functions to enable HUE HSV compatibility for Tradfri XY color lightbulbs
   */
 function HSVtoRGB(r,a,e){
     var t,s,o,b,c,n,i,u;
@@ -21,44 +22,31 @@ function HSVtoRGB(r,a,e){
     return{r:Math.round(255*t),g:Math.round(255*s),b:Math.round(255*o)}
 }
 
- /*
-  * Function to scale and convert HSV color values to XY color values lightbulbs
-  */
 function ScaledHSVtoRGB(r,a,e){
-    return HSVtoRGB(r/360,a/100,e/100)
-}
- 
- /*
-  * Function to convert RGB to XY color values for lightbulbs
-  */
+    return HSVtoRGB(r/360,a/100,e/100)}
+
 function rgb_to_cie(r,a,e){
     var t=.664511*(r=r>.04045?Math.pow((r+.055)/1.055,2.4):r/12.92)+.154324*(a=a>.04045?Math.pow((a+.055)/1.055,2.4):a/12.92)+.162028*(e=e>.04045?Math.pow((e+.055)/1.055,2.4):e/12.92),s=.283881*r+.668433*a+.047685*e,o=88e-6*r+.07231*a+.986039*e,b=(t/(t+s+o)).toFixed(4),c=(s/(t+s+o)).toFixed(4);
-    return isNaN(b)&&(b=0),isNaN(c)&&(c=0),[b,c]
-}
+    return isNaN(b)&&(b=0),isNaN(c)&&(c=0),[b,c]}
 
-/*
-  * linear Scaling Function
-  * (x1 -> y1)
-  * (x2 -> y2)
-  * (140 -> 250)
-  * (500 -> 454)
-  * scale_to(140,250,500,454,message)
-  */
-function scale_to(x1,y1,x2,y2,x){
-    return Math.round((y2-y1)/(x2-x1)*(x-x1)+y1)
-}
 
 /**
  * Initialise codec for accessory
+ * @param {object} params Initialisation parameters object
+ * @param {function} params.log Logging function
+ * @param {object} params.config Configuration
+ * @param {function} params.publish Function to publish a message directly to MQTT
+ * @param {function} params.notify Function to send MQTT-Thing a property notification
+ * @return {object} Encode and/or decode functions
  */
 function init( params ) {
     // extract parameters for convenience
     let { log, config, publish, notify } = params;
 
     setTimeout( () => {
-        let msg = `${config.name} handled in tradfri.js. ${config._ ? config._ : ''}`;
+        let msg = `${config.name} registered with hue.js.`;
         log( msg );
-        // log( JSON.stringify(config))
+
         // update state
         // notify( 'on', config.onValue || 1 );
         // notify( 'brightness', 50 );
@@ -68,71 +56,74 @@ function init( params ) {
     /**
      * Encode message before sending.
      * The output function may be called to deliver an encoded value for the property later.
+     * @param {string} message Message from mqttthing to be published to MQTT
+     * @param {object} info Object giving contextual information
+     * @param {string} info.topic MQTT topic to be published
+     * @param {string} info.property Property associated with publishing operation
+     * @param {function} output Function which may be called to deliver the encoded value asynchronously
+     * @returns {string} Processed message (optionally)
      */
     function encode( message, info, output ) {
-        log( `encode() called for topic [${info.topic}], property [${info.property}] with message [${message}]` );
+        //log( `encode() called for topic [${info.topic}], property [${info.property}] with message [${message}]` );
+        // just log and forward message
         output( message );
+        //return 'encode: finished'
     }
 
     /**
      * Decode received message, and optionally return decoded value.
      * The output function may be called to deliver a decoded value for the property later.
+     * @param {string} message Message received from MQTT
+     * @param {object} info Object giving contextual information
+     * @param {string} info.topic MQTT topic received
+     * @param {string} info.property Property associated with subscription
+     * @param {function} output Function which may be called to deliver the decoded value asynchronously
+     * @returns {string} Processed message (optionally)
      */
     function decode( message, info, output ) { // eslint-disable-line no-unused-vars
-        log( `decode() called for topic [${info.topic}], property [${info.property}] with message [${message}]` );
+        //log( `decode() called for topic [${info.topic}], property [${info.property}] with message [${message}]` );
+        //console.log('decode, info:',info,'message:',message)
+        // just log and forward message
         output( message );
-    }
-
-    function encode_on( message, info, output ) {
-        output( message );
-    }
-
-    function decode_on( message, info, output ) {
-        output( message );
+        //return 'decode: finished'
     }
 
     function encode_HSV( message ) {
-        let params=message.split(",")
-        let result={}
-        let rgb=ScaledHSVtoRGB(params[0],params[1],100)
-        let xy=rgb_to_cie(rgb.r,rgb.g,rgb.b);
-
+        var params=message.split(","),result={},rgb=ScaledHSVtoRGB(params[0],params[1],100),xy=rgb_to_cie(rgb.r,rgb.g,rgb.b);
         result.color={x:xy[0],y:xy[1]};
         var b=2.54*params[2];
         result.brightness=b;
-
-        log("encode: message: " + params + " result: " + JSON.stringify(result) + " rgb: " + JSON.stringify(rgb) + " xy: " + xy)
         return JSON.stringify(result);
     }
 
     function decode_HSV( message ) {
-        return message;
+        var params=message.split(","),result={},rgb=ScaledHSVtoRGB(params[0],params[1],100),xy=rgb_to_cie(rgb.r,rgb.g,rgb.b);
+        result.color={x:xy[0],y:xy[1]};
+        var b=2.54*params[2];
+        result.brightness=b;
+        return JSON.stringify(result);
     }
 
     function encode_ColorTemperature( message ) {
-        let retval = scale_to(140,250,500,454,message);
-        //log( "encode: got color_temp message: " + message  + " decoded to: " + retval );
-        return JSON.stringify({"color_temp": retval})
+        log( "encode: got color_temp message: " + message );
+        return JSON.stringify({"color_temp": Math.round(message * 204/360 + 170 + 2/3 )})
     }
 
     function decode_ColorTemperature( message ) {
-        let retval = scale_to(250,140,454,500,message);
-        //log( "decode: got color_temp message: " + message  + " decoded to: " + retval );
-        return JSON.stringify({"color_temp": retval})
+        log( "decode: got color_temp message: " + message );
+        return JSON.stringify({"color_temp": Math.round(message * 204/360 + 170 + 2/3 )})
     }
 
     function encode_brightness( message ) {
         // scale up to 0-255 range
-        let retval = scale_to(0,0,100,255,message);
-        //log( "encode: got brightness message: " + message + " encoded to: " + retval );
-        return JSON.stringify({"brightness": retval})
+        // log( "encode: brightness out: " + message );
+        return JSON.stringify({"brightness": Math.round( message * 254/100 )})
     }
 
     function decode_brightness( message ) {
         // scale down to 0-100 range
-        let retval = scale_to(0,0,255,100,message);
-        //log( "decode: got brightness message: " + message + " decoded to: " + retval );
-        return JSON.stringify({"brightness": retval})
+        // log( "decode: brightness in: " + message );
+        return JSON.stringify({"brightness": Math.round( message * 254/100 )})
     }
 
     /**
@@ -160,10 +151,6 @@ function init( params ) {
     return { 
         encode, decode, // default encode/decode functions
         properties: {
-            on: { 
-                encode: encode_on,
-                decode: decode_on
-            },
             brightness: { // encode/decode functions for brightness property
                 encode: encode_brightness,
                 decode: decode_brightness
@@ -172,7 +159,7 @@ function init( params ) {
                 encode: encode_HSV,
                 decode: decode_HSV
             },
-            colorTemperature: {
+            color: {
                 encode: encode_ColorTemperature,
                 decode: decode_ColorTemperature
             }
