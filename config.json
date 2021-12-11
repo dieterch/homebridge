@@ -7,10 +7,11 @@
     },
     "accessories": [
         {
+            "_": "_____ Beginn der Sektion Küche ____",
             "accessory": "mqttthing",
             "type": "switch",
-            "name": "Kueche Arbeit Licht",
-            "caption": "KUE_ArbeitsLicht",
+            "name": "Küche Arbeit Licht",
+            "caption": "Küche Arbeit Licht",
             "topics": {
                 "getOn": "zwave/Kueche/3/37/2/0",
                 "setOn": "zwave/Kueche/3/37/2/0/set"
@@ -22,15 +23,74 @@
         {
             "accessory": "mqttthing",
             "type": "switch",
-            "name": "Kueche Tisch Licht",
-            "caption": "KUE_TischLicht",
+            "name": "Küche Tisch Licht",
+            "caption": "Küche Tisch Licht",
             "topics": {
                 "getOn": "zwave/Kueche/3/37/1/0",
                 "setOn": "zwave/Kueche/3/37/1/0/set"
             },
             "integerValue": "false",
             "onValue": "true",
-            "offValue": "false"
+            "offValue": "false",
+            "_": "_____ Ende der Sektion Küche ____"
+        },
+        {
+            "_": "_____ Beginn der Sektion Wohnzimmer ____",
+            "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Wohnzimmer1",
+            "caption": "Wohnzimmer1",
+            "topics": {
+                "getOn": "zigbee2mqtt/Wohnzimmer1/setOn",
+                "setOn": "zigbee2mqtt/Wohnzimmer1/setOn",
+                "getBrightness": "zigbee2mqtt/Wohnzimmer1/getBrightness",
+                "setBrightness": "zigbee2mqtt/Wohnzimmer1/setBrightness",
+                "getColorTemperature": "zigbee2mqtt/Wohnzimmer1/getColorTemperature",
+                "setColorTemperature": "zigbee2mqtt/Wohnzimmer1/setColorTemperature"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Wohnzimmer2",
+            "caption": "Wohnzimmer2",
+            "topics": {
+                "getOn": "zigbee2mqtt/Wohnzimmer2/setOn",
+                "setOn": "zigbee2mqtt/Wohnzimmer2/setOn",
+                "getBrightness": "zigbee2mqtt/Wohnzimmer2/getBrightness",
+                "setBrightness": "zigbee2mqtt/Wohnzimmer2/setBrightness",
+                "getColorTemperature": "zigbee2mqtt/Wohnzimmer2/getColorTemperature",
+                "setColorTemperature": "zigbee2mqtt/Wohnzimmer2/setColorTemperature"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Wohnzimmer3",
+            "caption": "Wohnzimmer3",
+            "topics": {
+                "getOn": "zigbee2mqtt/Wohnzimmer3/setOn",
+                "setOn": "zigbee2mqtt/Wohnzimmer3/setOn",
+                "getBrightness": "zigbee2mqtt/Wohnzimmer3/getBrightness",
+                "setBrightness": "zigbee2mqtt/Wohnzimmer3/setBrightness",
+                "getColorTemperature": "zigbee2mqtt/Wohnzimmer3/getColorTemperature",
+                "setColorTemperature": "zigbee2mqtt/Wohnzimmer3/setColorTemperature"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -59,6 +119,58 @@
             "offValue": "false"
         },
         {
+            "type": "statelessProgrammableSwitch",
+            "name": "Wohnzimmer Remote",
+            "caption": "Wohnzimmer Remote",
+            "topics": {
+                "getSwitch": [
+                    {
+                        "topic": "zigbee2mqtt/Wohnzimmerschalter",
+                        "apply": "return JSON.parse(message).action;"
+                    },
+                    {
+                        "topic": "zigbee2mqtt/Wohnzimmerschalter",
+                        "apply": "return JSON.parse(message).action;"
+                    }
+                ],
+                "getStatusLowBattery": {
+                    "topic": "zigbee2mqtt/Wohnzimmerschalter",
+                    "apply": "if (JSON.parse(message).battery < 20) return 1; else return 0;"
+                },
+                "getBatteryLevel": {
+                    "topic": "zigbee2mqtt/Wohnzimmerschalter",
+                    "apply": "return JSON.parse(message).battery;"
+                }
+            },
+            "switchValues": [
+                [
+                    "on-press",
+                    "on-hold",
+                    "nix"
+                ],
+                [
+                    "off-press",
+                    "off-hold",
+                    "nix"
+                ]
+            ],
+            "accessory": "mqttthing",
+            "logMqtt": false
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "switch",
+            "name": "Wohnzimmer Regal Schalter",
+            "caption": "Wohnzimmer_Regal_Licht",
+            "topics": {
+                "getOn": "shellies/shellyplug-s-040D25/relay/0",
+                "setOn": "shellies/shellyplug-s-040D25/relay/0/command"
+            },
+            "integerValue": "false",
+            "onValue": "on",
+            "offValue": "off"
+        },
+        {
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer TV BackSchalter",
@@ -69,9 +181,11 @@
             },
             "integerValue": "false",
             "onValue": "true",
-            "offValue": "false"
+            "offValue": "false",
+            "_": "_____ Ende der Sektion Wohnzimmer ____"
         },
         {
+            "_": "_____ Beginn der Sektion Flur ____",
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Flur Licht Schalter",
@@ -85,6 +199,95 @@
             "offValue": "off"
         },
         {
+            "type": "statelessProgrammableSwitch",
+            "name": "Flur Remote",
+            "caption": "Flur Remote",
+            "topics": {
+                "getSwitch": [
+                    {
+                        "topic": "zigbee2mqtt/FlurSchalter",
+                        "apply": "return JSON.parse(message).action;"
+                    },
+                    {
+                        "topic": "zigbee2mqtt/FlurSchalter",
+                        "apply": "return JSON.parse(message).action;"
+                    }
+                ],
+                "getStatusLowBattery": {
+                    "topic": "zigbee2mqtt/FlurSchalter",
+                    "apply": "return (JSON.parse(message).battery < 20) ? 1 : 0;"
+                },
+                "getBatteryLevel": {
+                    "topic": "zigbee2mqtt/FlurSchalter",
+                    "apply": "return JSON.parse(message).battery;"
+                }
+            },
+            "switchValues": [
+                [
+                    "on-press",
+                    "on-hold",
+                    "nix"
+                ],
+                [
+                    "off-press",
+                    "off-hold",
+                    "nix"
+                ]
+            ],
+            "accessory": "mqttthing",
+            "logMqtt": false
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "motionSensor",
+            "name": "Flur Motionsensor",
+            "caption": "Flur Motionsensor",
+            "topics": {
+                "getMotionDetected": {
+                    "topic": "zigbee2mqtt/FlurBewegungsmelder",
+                    "apply": "return JSON.parse(message).occupancy ? \"ON\" : \"OFF\";"
+                },
+                "getBatteryLevel": {
+                    "topic": "zigbee2mqtt/FlurBewegungsmeldera",
+                    "apply": "return JSON.parse(message).battery;"
+                }
+            },
+            "integerValue": "true",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "temperatureSensor",
+            "name": "Flur Motionsensor Temperatur",
+            "caption": "Flur Motionsensor Temperatur",
+            "topics": {
+                "getCurrentTemperature": {
+                    "topic": "zigbee2mqtt/FlurBewegungsmelder",
+                    "apply": "return JSON.parse(message).temperature;"
+                }
+            },
+            "minTemperature": 0,
+            "maxTemperature": 50,
+            "logMqtt": false
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "lightSensor",
+            "name": "Flur Motionsensor lightSensor",
+            "caption": "Flur Motionsensor lightSensor",
+            "topics": {
+                "getCurrentAmbientLightLevel": {
+                    "topic": "zigbee2mqtt/FlurBewegungsmelder",
+                    "apply": "var l=JSON.parse(message).illuminance_lux; return (l > 0.0001) ? l : 0.0001 ;"
+                }
+            },
+            "logMqtt": false,
+            "_": "_____ Ende der Sektion Flur ____"
+        },
+        {
+            "_": "_____ Beginn der Sektion Bad ____",
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Bad Deckenlicht Schalter",
@@ -108,9 +311,11 @@
             },
             "integerValue": "false",
             "onValue": "on",
-            "offValue": "off"
+            "offValue": "off",
+            "_": "_____ Ende der Sektion Bad ____"
         },
         {
+            "_": "_____ Beginn der Sektion WC ____",
             "accessory": "mqttthing",
             "type": "switch",
             "name": "WC Licht Schalter",
@@ -121,35 +326,11 @@
             },
             "integerValue": "false",
             "onValue": "on",
-            "offValue": "off"
+            "offValue": "off",
+            "__": "_____ Ende der Sektion WC ____"
         },
         {
-            "accessory": "mqttthing",
-            "type": "switch",
-            "name": "Esszimmer Licht Schalter",
-            "caption": "Esszimmer_Licht",
-            "topics": {
-                "getOn": "shellies/shelly1-32CE66/relay/0",
-                "setOn": "shellies/shelly1-32CE66/relay/0/command"
-            },
-            "integerValue": "false",
-            "onValue": "on",
-            "offValue": "off"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "switch",
-            "name": "Wohnzimmer Regal Schalter",
-            "caption": "Wohnzimmer_Regal_Licht",
-            "topics": {
-                "getOn": "shellies/shellyplug-s-040D25/relay/0",
-                "setOn": "shellies/shellyplug-s-040D25/relay/0/command"
-            },
-            "integerValue": "false",
-            "onValue": "on",
-            "offValue": "off"
-        },
-        {
+            "_": "_____ Beginn der Sektion Schlafzimmer ____",
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Schlafzimmer Dieter Deckenlichtschalter",
@@ -181,6 +362,40 @@
         },
         {
             "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Schlafzimmer oberes Licht",
+            "caption": "Schlafzimmer oberes Licht",
+            "topics": {
+                "getOn": "zigbee2mqtt/StehlampeOben/setOn",
+                "setOn": "zigbee2mqtt/StehlampeOben/setOn",
+                "getBrightness": "zigbee2mqtt/StehlampeOben/getBrightness",
+                "setBrightness": "zigbee2mqtt/StehlampeOben/setBrightness"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "lightbulb",
+            "name": "Schlafzimmer unteres Licht",
+            "caption": "Schlafzimmer unteres Licht",
+            "topics": {
+                "getOn": "zigbee2mqtt/StehlampeUnten/setOn",
+                "setOn": "zigbee2mqtt/StehlampeUnten/setOn",
+                "getBrightness": "zigbee2mqtt/StehlampeUnten/getBrightness",
+                "setBrightness": "zigbee2mqtt/StehlampeUnten/setBrightness"
+            },
+            "integerValue": "false",
+            "onValue": "ON",
+            "offValue": "OFF",
+            "logMqtt": false,
+            "codec": "tradfri.js"
+        },
+        {
+            "accessory": "mqttthing",
             "type": "switch",
             "name": "Schlafzimmer Susi Deckenlichtschalter",
             "caption": "Schlafzimmer_Susi_Deckenlicht",
@@ -200,130 +415,15 @@
             "topics": {
                 "getOn": "zigbee2mqtt/SchlafzimmerSusi/get",
                 "setOn": "zigbee2mqtt/SchlafzimmerSusi/set",
-                "getBrightness": "zigbee2mqtt/SchlafzimmerSusi/getBrightness",
-                "setBrightness": "zigbee2mqtt/SchlafzimmerSusi/setBrightness",
-                "getColorTemperature": {
-                    "topic": "zigbee2mqtt/SchlafzimmerSusi/get",
-                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
-                },
-                "setColorTemperature": {
-                    "topic": "zigbee2mqtt/SchlafzimmerSusi/set",
-                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
-                }
-            },
-            "integerValue": "false",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
-            "name": "Stehlampe oberes Licht",
-            "caption": "StehlampeOben",
-            "topics": {
-                "getOn": "zigbee2mqtt/StehlampeOben/setOn",
-                "setOn": "zigbee2mqtt/StehlampeOben/setOn",
-                "getBrightness": "zigbee2mqtt/StehlampeOben/getBrightness",
-                "setBrightness": "zigbee2mqtt/StehlampeOben/setBrightness"
+                "getHSV": "zigbee2mqtt/SchlafzimmerSusi/getHSV",
+                "setHSV": "zigbee2mqtt/SchlafzimmerSusi/setHSV"
             },
             "integerValue": "false",
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
-            "name": "Stehlampe unteres Licht",
-            "caption": "StehlampeUnten",
-            "topics": {
-                "getOn": "zigbee2mqtt/StehlampeUnten/setOn",
-                "setOn": "zigbee2mqtt/StehlampeUnten/setOn",
-                "getBrightness": "zigbee2mqtt/StehlampeUnten/getBrightness",
-                "setBrightness": "zigbee2mqtt/StehlampeUnten/setBrightness"
-            },
-            "integerValue": "false",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false,
-            "codec": "tradfri.js"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
-            "name": "Wohnzimmer3",
-            "caption": "Wohnzimmer3",
-            "topics": {
-                "getOn": "zigbee2mqtt/Wohnzimmer3/setOn",
-                "setOn": "zigbee2mqtt/Wohnzimmer3/setOn",
-                "getBrightness": "zigbee2mqtt/Wohnzimmer3/getBrightness",
-                "setBrightness": "zigbee2mqtt/Wohnzimmer3/setBrightness",
-                "getColorTemperature": {
-                    "topic": "zigbee2mqtt/Wohnzimmer3/get",
-                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
-                },
-                "setColorTemperature": {
-                    "topic": "zigbee2mqtt/Wohnzimmer3/set",
-                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
-                }
-            },
-            "integerValue": "false",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false,
-            "codec": "tradfri.js"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
-            "name": "Wohnzimmer2",
-            "caption": "Wohnzimmer2",
-            "topics": {
-                "getOn": "zigbee2mqtt/Wohnzimmer2/setOn",
-                "setOn": "zigbee2mqtt/Wohnzimmer2/setOn",
-                "getBrightness": "zigbee2mqtt/Wohnzimmer2/getBrightness",
-                "setBrightness": "zigbee2mqtt/Wohnzimmer2/setBrightness",
-                "getColorTemperature": {
-                    "topic": "zigbee2mqtt/Wohnzimmer2/get",
-                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
-                },
-                "setColorTemperature": {
-                    "topic": "zigbee2mqtt/Wohnzimmer2/set",
-                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
-                }
-            },
-            "integerValue": "false",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false,
-            "codec": "tradfri.js"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightbulb",
-            "name": "Wohnzimmer1",
-            "caption": "Wohnzimmer1",
-            "topics": {
-                "getOn": "zigbee2mqtt/Wohnzimmer1/setOn",
-                "setOn": "zigbee2mqtt/Wohnzimmer1/setOn",
-                "getBrightness": "zigbee2mqtt/Wohnzimmer1/getBrightness",
-                "setBrightness": "zigbee2mqtt/Wohnzimmer1/setBrightness",
-                "getColorTemperature": {
-                    "topic": "zigbee2mqtt/Wohnzimmer1/get",
-                    "apply": "return JSON.stringify({\"color_temp\": \"\"});"
-                },
-                "setColorTemperature": {
-                    "topic": "zigbee2mqtt/Wohnzimmer1/set",
-                    "apply": "return JSON.stringify({\"color_temp\": Math.round(message * 204/360 + 170 + 2/3 )});"
-                }
-            },
-            "integerValue": "false",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "hue.js",
+            "_": "_____ Ende der Sektion Schlafzimmer ____"
         },
         {
             "_": "_____ Beginn der Sektion Esszimmer ____",
@@ -412,7 +512,19 @@
             "codec": "tradfri.js"
         },
         {
-            "_": "_____ Ende der Sektion Esszimmer ____",
+            "accessory": "mqttthing",
+            "type": "switch",
+            "name": "Esszimmer Licht Schalter",
+            "caption": "Esszimmer_Licht",
+            "topics": {
+                "getOn": "shellies/shelly1-32CE66/relay/0",
+                "setOn": "shellies/shelly1-32CE66/relay/0/command"
+            },
+            "integerValue": "false",
+            "onValue": "on",
+            "offValue": "off"
+        },
+        {
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Esszimmer Stehlampe",
@@ -429,85 +541,8 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
-        },
-        {
-            "type": "statelessProgrammableSwitch",
-            "name": "Flur Remote",
-            "caption": "Flur Remote",
-            "topics": {
-                "getSwitch": [
-                    {
-                        "topic": "zigbee2mqtt/FlurSchalter",
-                        "apply": "return JSON.parse(message).action;"
-                    },
-                    {
-                        "topic": "zigbee2mqtt/FlurSchalter",
-                        "apply": "return JSON.parse(message).action;"
-                    }
-                ],
-                "getStatusLowBattery": {
-                    "topic": "zigbee2mqtt/FlurSchalter",
-                    "apply": "return (JSON.parse(message).battery < 20) ? 1 : 0;"
-                },
-                "getBatteryLevel": {
-                    "topic": "zigbee2mqtt/FlurSchalter",
-                    "apply": "return JSON.parse(message).battery;"
-                }
-            },
-            "switchValues": [
-                [
-                    "on-press",
-                    "on-hold",
-                    "nix"
-                ],
-                [
-                    "off-press",
-                    "off-hold",
-                    "nix"
-                ]
-            ],
-            "accessory": "mqttthing",
-            "logMqtt": false
-        },
-        {
-            "type": "statelessProgrammableSwitch",
-            "name": "Wohnzimmer Remote",
-            "caption": "Wohnzimmer Remote",
-            "topics": {
-                "getSwitch": [
-                    {
-                        "topic": "zigbee2mqtt/Wohnzimmerschalter",
-                        "apply": "return JSON.parse(message).action;"
-                    },
-                    {
-                        "topic": "zigbee2mqtt/Wohnzimmerschalter",
-                        "apply": "return JSON.parse(message).action;"
-                    }
-                ],
-                "getStatusLowBattery": {
-                    "topic": "zigbee2mqtt/Wohnzimmerschalter",
-                    "apply": "if (JSON.parse(message).battery < 20) return 1; else return 0;"
-                },
-                "getBatteryLevel": {
-                    "topic": "zigbee2mqtt/Wohnzimmerschalter",
-                    "apply": "return JSON.parse(message).battery;"
-                }
-            },
-            "switchValues": [
-                [
-                    "on-press",
-                    "on-hold",
-                    "nix"
-                ],
-                [
-                    "off-press",
-                    "off-hold",
-                    "nix"
-                ]
-            ],
-            "accessory": "mqttthing",
-            "logMqtt": false
+            "codec": "tradfri.js",
+            "_": "_____ Ende der Sektion Esszimmer ____"
         },
         {
             "type": "statelessProgrammableSwitch",
@@ -554,54 +589,6 @@
                 ]
             ],
             "accessory": "mqttthing",
-            "logMqtt": false
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "motionSensor",
-            "name": "Flur Motionsensor",
-            "caption": "Flur Motionsensor",
-            "topics": {
-                "getMotionDetected": {
-                    "topic": "zigbee2mqtt/FlurBewegungsmelder",
-                    "apply": "return JSON.parse(message).occupancy ? \"ON\" : \"OFF\";"
-                },
-                "getBatteryLevel": {
-                    "topic": "zigbee2mqtt/FlurBewegungsmeldera",
-                    "apply": "return JSON.parse(message).battery;"
-                }
-            },
-            "integerValue": "true",
-            "onValue": "ON",
-            "offValue": "OFF",
-            "logMqtt": false
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "temperatureSensor",
-            "name": "Flur Motionsensor Temperatur",
-            "caption": "Flur Motionsensor Temperatur",
-            "topics": {
-                "getCurrentTemperature": {
-                    "topic": "zigbee2mqtt/FlurBewegungsmelder",
-                    "apply": "return JSON.parse(message).temperature;"
-                }
-            },
-            "minTemperature": 0,
-            "maxTemperature": 50,
-            "logMqtt": false
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "lightSensor",
-            "name": "Flur Motionsensor lightSensor",
-            "caption": "Flur Motionsensor lightSensor",
-            "topics": {
-                "getCurrentAmbientLightLevel": {
-                    "topic": "zigbee2mqtt/FlurBewegungsmelder",
-                    "apply": "var l=JSON.parse(message).illuminance_lux; return (l > 0.0001) ? l : 0.0001 ;"
-                }
-            },
             "logMqtt": false
         }
     ],

@@ -58,6 +58,7 @@ function init( params ) {
     setTimeout( () => {
         let msg = `${config.name} handled in tradfri.js. ${config._ ? config._ : ''}`;
         log( msg );
+        config.url = config.url ? config.url : "http://localhost:1883"
         // log( JSON.stringify(config))
         // update state
         // notify( 'on', config.onValue || 1 );
@@ -101,7 +102,7 @@ function init( params ) {
         var b=2.54*params[2];
         result.brightness=b;
 
-        log("encode: message: " + params + " result: " + JSON.stringify(result) + " rgb: " + JSON.stringify(rgb) + " xy: " + xy)
+        //log("encode: message: " + params + " result: " + JSON.stringify(result) + " rgb: " + JSON.stringify(rgb))
         return JSON.stringify(result);
     }
 
