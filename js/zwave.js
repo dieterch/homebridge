@@ -43,9 +43,9 @@ function init( params ) {
         //send to MQTT
         if (info.topic == "zwave/Wohnzimmer/5/37/2/0/set") {
             let msg = (message == "true") ? "1" : "0";
-            if (t.debug(true)) { log(`zwave encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
+            if (t.debug()) { log(`zwave encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
-                t.log_en(log, message, info, msg, true);
+                t.log_en(log, message, info, msg);
                 publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
                 state = message
                 return message
@@ -58,9 +58,9 @@ function init( params ) {
         //send to mqtt-thing
         if (info.topic == "zwave/Wohnzimmer/5/37/2/0") {
             let msg = (message == "true") ? "1" : "0";
-            if (t.debug(true)) { log(`zwave decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
+            if (t.debug()) { log(`zwave decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
-                t.log_de(log, message, info, msg, true);
+                t.log_de(log, message, info, msg);
                 //publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
                 state = message
                 return message

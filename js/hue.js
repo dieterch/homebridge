@@ -15,8 +15,12 @@ function init( params ) {
     let { log, config, publish, notify } = params;
     let msg = `--> hue.js. ${config._ ? config._ : ''}`;
     log( msg );
-    config.url = config.url ? config.url : "http://localhost:1883"
+    config.url = config.url ? config.url : "http://localhost:1883";
+    // log(config)
     let state = {}
+    if (config.type == "motionSensor") {
+        state.period = config.period
+    }
 
     /**
      * Encode message before sending.
@@ -34,6 +38,54 @@ function init( params ) {
     function decode( message, info, output ) { // eslint-disable-line no-unused-vars
         t.log_de(log, message, info, message)
         output( message );
+    }
+
+    function decode_motionDetected( message, info, output ) { // eslint-disable-line no-unused-vars
+        t.log_de(log, message, info, message)
+        msg = JSON.parse(message);
+        //log(msg)
+        //log(state)
+        if (info.topic == "zigbee2mqtt/FlurBewegungsmelder") {
+            if (msg.occupancy) {
+                publish("shellies/shelly1-554C88/relay/0/command","on")
+                setTimeout( () => {
+                    publish("shellies/shelly1-554C88/relay/0/command","off")
+                }, 1000 * parseInt(state.period) );
+            } 
+        }
+        output( message );
+    }
+
+    function decode_Switch( message, info, output ) {
+        t.log_de(log, message, info, message)
+        msg = JSON.parse(message)
+        //log(msg)
+        if (info.topic == "zigbee2mqtt/Wohnzimmerschalter") {
+            if (["on-press","on-hold"].includes(msg.action)) {
+                publish("shellies/shellyix3-98CDAC24BCC3/input/2","1")
+                //publish("zwave/Wohnzimmer/5/37/2/0/set",true)
+            };
+            if (["up-press","up-hold","down-press","down-hold"].includes(msg.action)) {
+                publish("zigbee2mqtt/Wohnzimmer1/setBrightness",JSON.stringify({"brightness":msg.brightness}));
+                publish("zigbee2mqtt/Wohnzimmer2/setBrightness",JSON.stringify({"brightness":msg.brightness}));
+                publish("zigbee2mqtt/Wohnzimmer3/setBrightness",JSON.stringify({"brightness":msg.brightness}));
+            };   
+            if (["off-press","off-hold"].includes(msg.action)) {
+                publish("shellies/shellyix3-98CDAC24BCC3/input/2","0")
+                //publish("zwave/Wohnzimmer/5/37/2/0/set",false)
+            };        // output( message );
+        };
+        if (info.topic == "zigbee2mqtt/FlurSchalter") {
+            if (["on-press","on-hold","up-press","up-hold"].includes(msg.action)) {
+                publish("shellies/shelly1-554C88/relay/0/command","on")
+                //publish("zwave/Wohnzimmer/5/37/2/0/set",true)
+            };
+            if (["off-press","off-hold","down-press","down-hold"].includes(msg.action)) {
+                publish("shellies/shelly1-554C88/relay/0/command","off")
+                //publish("zwave/Wohnzimmer/5/37/2/0/set",false)
+            };        // output( message );
+        }
+
     }
 
     function encode_on( message, info, output ) {
@@ -106,6 +158,12 @@ function init( params ) {
             colorTemperature: {
                 encode: encode_ColorTemperature,
                 decode: decode_ColorTemperature
+            },
+            switch0: {
+                decode: decode_Switch                
+            },
+            motionDetected: {
+                decode: decode_motionDetected
             }
         }
     };

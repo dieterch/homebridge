@@ -5,7 +5,7 @@
  'use strict';
 
 const debugall = false
-const maskdebug = true
+const maskdebug = false
 
 function debug(override = false) {
     return ((debugall && !maskdebug) || (override && !maskdebug))

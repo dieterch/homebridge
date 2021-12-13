@@ -107,6 +107,7 @@
             "codec": "js/zwave.js"
         },
         {
+            "_": "13.12.2021: derzeit nicht verbaut",
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer Schalter 2",
@@ -117,7 +118,8 @@
             },
             "integerValue": "false",
             "onValue": "true",
-            "offValue": "false"
+            "offValue": "false",
+            "codec": "js/zwave.js"
         },
         {
             "accessory": "mqttthing",
@@ -140,10 +142,6 @@
                     {
                         "topic": "zigbee2mqtt/Wohnzimmerschalter",
                         "apply": "return JSON.parse(message).action;"
-                    },
-                    {
-                        "topic": "zigbee2mqtt/Wohnzimmerschalter",
-                        "apply": "return JSON.parse(message).action;"
                     }
                 ],
                 "getStatusLowBattery": {
@@ -155,20 +153,9 @@
                     "apply": "return JSON.parse(message).battery;"
                 }
             },
-            "switchValues": [
-                [
-                    "on-press",
-                    "on-hold",
-                    "nix"
-                ],
-                [
-                    "off-press",
-                    "off-hold",
-                    "nix"
-                ]
-            ],
             "accessory": "mqttthing",
-            "logMqtt": false
+            "logMqtt": false,
+            "codec": "js/hue.js"
         },
         {
             "accessory": "mqttthing",
@@ -220,10 +207,6 @@
                     {
                         "topic": "zigbee2mqtt/FlurSchalter",
                         "apply": "return JSON.parse(message).action;"
-                    },
-                    {
-                        "topic": "zigbee2mqtt/FlurSchalter",
-                        "apply": "return JSON.parse(message).action;"
                     }
                 ],
                 "getStatusLowBattery": {
@@ -235,20 +218,9 @@
                     "apply": "return JSON.parse(message).battery;"
                 }
             },
-            "switchValues": [
-                [
-                    "on-press",
-                    "on-hold",
-                    "nix"
-                ],
-                [
-                    "off-press",
-                    "off-hold",
-                    "nix"
-                ]
-            ],
             "accessory": "mqttthing",
-            "logMqtt": false
+            "logMqtt": false,
+            "codec": "js/hue.js"
         },
         {
             "accessory": "mqttthing",
@@ -268,7 +240,9 @@
             "integerValue": "true",
             "onValue": "ON",
             "offValue": "OFF",
-            "logMqtt": false
+            "logMqtt": false,
+            "period": "180",
+            "codec": "js/hue.js"
         },
         {
             "accessory": "mqttthing",
