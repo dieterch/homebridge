@@ -13,6 +13,7 @@
 function init( params ) {
     // extract parameters for convenience
     let { log, config, publish, notify } = params;
+    let state = 'false';
 
     setTimeout( () => {
         let msg = `--> zwave.js. ${config._ ? config._ : ''}`;
@@ -39,22 +40,33 @@ function init( params ) {
     }
 
     function encode_on( message, info, output ) {
-        //woraround binding
+        //send to MQTT
         if (info.topic == "zwave/Wohnzimmer/5/37/2/0/set") {
             let msg = (message == "true") ? "1" : "0";
-            t.log_en(log, message, info, msg, true);
-            //publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
+            if (t.debug(true)) { log(`zwave encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
+            if (state != message) {
+                t.log_en(log, message, info, msg, true);
+                publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
+                state = message
+                return message
+            }
         }
-        output( message );
+        //output( message );
     }
 
     function decode_on( message, info, output ) {
-        //woraround binding
+        //send to mqtt-thing
         if (info.topic == "zwave/Wohnzimmer/5/37/2/0") {
             let msg = (message == "true") ? "1" : "0";
-            t.log_de(log, message, info, msg, true);
+            if (t.debug(true)) { log(`zwave decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
+            if (state != message) {
+                t.log_de(log, message, info, msg, true);
+                //publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
+                state = message
+                return message
+            }
         }
-        output( message );
+        // output( message );
     }
     
     // return encode and decode functions

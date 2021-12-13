@@ -4,16 +4,21 @@
 
  'use strict';
 
-const debug = false
+const debugall = false
+const maskdebug = true
+
+function debug(override = false) {
+    return ((debugall && !maskdebug) || (override && !maskdebug))
+}
 
 function log_en( log, message, info, result, override = false) {
-    if (debug || override) {
+    if (debug(override)) {
         log( `topic[${info.topic}], property[${info.property}] to MQTT msg[${message}]` );
     }
 }
 
 function log_de( log, message, info, result, override = false) {
-    if (debug || override) {
+    if (debug(override)) {
         log( `topic[${info.topic}], property[${info.property}] got msg[${message}] from MQTT, send msg[${result}] to mqtt-thing` );
     }
 }
@@ -63,6 +68,7 @@ function rgb_to_cie(r,a,e){
 
 // export initialisation function
 module.exports = {
+    debug,
     log_en,
     log_de,
     scale_to,

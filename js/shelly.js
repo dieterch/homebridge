@@ -13,6 +13,7 @@
 function init( params ) {
     // extract parameters for convenience
     let { log, config, publish, notify } = params;
+    let state = 'false';
 
     setTimeout( () => {
         let msg = `--> shelly.js. ${config._ ? config._ : ''}`;
@@ -42,20 +43,30 @@ function init( params ) {
         //woraround binding
         if (info.topic == "shellies/shellyix3-98CDAC24BCC3/input/2") {
             let msg = (message == "1") ? "true" : "false";
-            t.log_en(log, message, info, msg, true);
-            // publish("zwave/Wohnzimmer/5/37/2/0/set",msg)
+            if (t.debug(true)) { log(`shelly encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
+            if (state != message) {
+                t.log_en(log, message, info, msg, true);
+                publish("zwave/Wohnzimmer/5/37/2/0/set",msg)
+                state = message
+                return message
+            }
         }
-        output( message );
+        //output( message );
     }
 
     function decode_on( message, info, output ) {
         //woraround binding
         if (info.topic == "shellies/shellyix3-98CDAC24BCC3/input/2") {
             let msg = (message == "1") ? "true" : "false";
-            t.log_de(log, message, info, msg, true);
-            //publish("zwave/Wohnzimmer/5/37/2/0/set",msg)
+            if (t.debug(true)) { log(`shelly decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
+            if (state != message) {
+                t.log_de(log, message, info, msg, true);
+                publish("zwave/Wohnzimmer/5/37/2/0/set",msg) //heavy roundabout
+                state = message
+                return message
+            }
         }        
-        output( message );
+        // output( message );
     }
     
     // return encode and decode functions
