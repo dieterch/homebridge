@@ -52,7 +52,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -71,7 +71,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -90,7 +90,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -103,7 +103,8 @@
             },
             "integerValue": "false",
             "onValue": "true",
-            "offValue": "false"
+            "offValue": "false",
+            "codec": "js/zwave.js"
         },
         {
             "accessory": "mqttthing",
@@ -117,6 +118,18 @@
             "integerValue": "false",
             "onValue": "true",
             "offValue": "false"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "switch",
+            "name": "Wohnzimmer Schalter 3",
+            "caption": "Wohnzimmer Schalter 3",
+            "topics": {
+                "getOn": "shellies/shellyix3-98CDAC24BCC3/input/2",
+                "setOn": "shellies/shellyix3-98CDAC24BCC3/input/2"
+            },
+            "integerValue": "true",
+            "codec": "js/shelly.js"
         },
         {
             "type": "statelessProgrammableSwitch",
@@ -358,7 +371,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -375,7 +388,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -392,7 +405,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -422,7 +435,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "hue.js",
+            "codec": "js/hue.js",
             "_": "_____ Ende der Sektion Schlafzimmer ____"
         },
         {
@@ -435,12 +448,13 @@
                 "getOn": "zigbee2mqtt/Esszimmer1/setOn",
                 "setOn": "zigbee2mqtt/Esszimmer1/setOn",
                 "getBrightness": "zigbee2mqtt/Esszimmer1/getBrightness",
-                "setBrightness": "zigbee2mqtt/Esszimmer1/setBrightness"           },
+                "setBrightness": "zigbee2mqtt/Esszimmer1/setBrightness"
+            },
             "integerValue": "false",
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -453,13 +467,13 @@
                 "getBrightness": "zigbee2mqtt/Esszimmer2/getBrightness",
                 "setBrightness": "zigbee2mqtt/Esszimmer2/setBrightness",
                 "getColorTemperature": "zigbee2mqtt/Esszimmer2/getColorTemperature",
-                "setColorTemperature": "zigbee2mqtt/Esszimmer2/setColorTemperature" 
+                "setColorTemperature": "zigbee2mqtt/Esszimmer2/setColorTemperature"
             },
             "integerValue": "false",
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -476,7 +490,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -492,7 +506,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "otherValueOff": true,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -509,7 +523,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "otherValueOff": true,
-            "codec": "tradfri.js"
+            "codec": "js/tradfri.js"
         },
         {
             "accessory": "mqttthing",
@@ -541,7 +555,7 @@
             "onValue": "ON",
             "offValue": "OFF",
             "logMqtt": false,
-            "codec": "tradfri.js",
+            "codec": "js/tradfri.js",
             "_": "_____ Ende der Sektion Esszimmer ____"
         },
         {
@@ -590,6 +604,14 @@
             ],
             "accessory": "mqttthing",
             "logMqtt": false
+        },
+        {
+            "name": "test",
+            "stateful": true,
+            "reverse": false,
+            "time": 1000,
+            "resettable": false,
+            "accessory": "DummySwitch"
         }
     ],
     "platforms": [
