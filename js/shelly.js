@@ -13,7 +13,8 @@
 function init( params ) {
     // extract parameters for convenience
     let { log, config, publish, notify } = params;
-    let state = 'false';
+    let state = "false";
+    let timeout = 3;
 
     setTimeout( () => {
         let msg = `--> shelly.js. ${config._ ? config._ : ''}`;
@@ -40,30 +41,64 @@ function init( params ) {
     }
 
     function encode_on( message, info, output ) {
-        //woraround binding
+        //bind Wohnzimmer1 und Wohnzimmer3 Schalter
         if (info.topic == "shellies/shellyix3-98CDAC24BCC3/input/2") {
             let msg = (message == "1") ? "true" : "false";
             if (t.debug()) { log(`shelly encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_en(log, message, info, msg);
-                publish("zwave/Wohnzimmer/5/37/2/0/set",msg)
+                publish("zwave/Wohnzimmer/8/37/1/targetValue/set",msg)
                 state = message
                 return message
+            }
+        };
+        //WC Timer - funktioniert noch nicht ...
+        if (info.topic == "shellies/shelly1-2C1435/relay/0/command") {
+            log("in WC Schalter encode")
+            let msg = message.toString()
+            if (state != msg) {
+                t.log_de(log, message, info, message,true);
+                state = msg;
+                setTimeout( () => {
+                    notify(info.property, "off")
+                    log("decode: timeout expired")
+                }, 1000 * timeout );
+                return message
+            } else {
+                log("encode: message skipped")
             }
         }
         //output( message );
     }
 
     function decode_on( message, info, output ) {
-        //woraround binding
+        //bind Wohnzimmer1 und Wohnzimmer3 Schalter
         if (info.topic == "shellies/shellyix3-98CDAC24BCC3/input/2") {
             let msg = (message == "1") ? "true" : "false";
             if (t.debug()) { log(`shelly decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_de(log, message, info, msg);
-                publish("zwave/Wohnzimmer/5/37/2/0/set",msg) //heavy roundabout
+                publish("zwave/Wohnzimmer/8/37/1/targetValue/set",msg) //heavy roundabout
                 state = message
                 return message
+            }
+        };
+        //WC Timer - funktioniert noch nicht ...
+        if (info.topic == "shellies/shelly1-2C1435/relay/0") {
+            log("in WC Schalter decode");
+            log(state)
+            let msg = message.toString()
+            log(msg)
+            if (state != msg) {
+                t.log_de(log, message, info, message,true)
+                state = msg;
+                setTimeout( () => {
+                    notify(info.property, "off")
+                    log("decode: timeout expired")
+                }, 1000 * timeout );
+                return message
+            } else {
+                log("decode: message skipped")
             }
         }        
         // output( message );

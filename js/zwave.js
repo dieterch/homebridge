@@ -41,7 +41,7 @@ function init( params ) {
 
     function encode_on( message, info, output ) {
         //send to MQTT
-        if (info.topic == "zwave/Wohnzimmer/5/37/2/0/set") {
+        if (info.topic == "zwave/Wohnzimmer/8/37/1/targetValue/set") {
             let msg = (message == "true") ? "1" : "0";
             if (t.debug()) { log(`zwave encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
@@ -56,7 +56,7 @@ function init( params ) {
 
     function decode_on( message, info, output ) {
         //send to mqtt-thing
-        if (info.topic == "zwave/Wohnzimmer/5/37/2/0") {
+        if (info.topic == "zwave/Wohnzimmer/8/37/1/currentValue") {
             let msg = (message == "true") ? "1" : "0";
             if (t.debug()) { log(`zwave decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {

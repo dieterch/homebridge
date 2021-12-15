@@ -43,8 +43,7 @@ function init( params ) {
     function decode_motionDetected( message, info, output ) { // eslint-disable-line no-unused-vars
         t.log_de(log, message, info, message)
         msg = JSON.parse(message);
-        //log(msg)
-        //log(state)
+        //Vorzimmer Licht Timer ...
         if (info.topic == "zigbee2mqtt/FlurBewegungsmelder") {
             if (msg.occupancy) {
                 publish("shellies/shelly1-554C88/relay/0/command","on")

@@ -13,8 +13,8 @@
             "name": "Küche Arbeit Licht",
             "caption": "Küche Arbeit Licht",
             "topics": {
-                "getOn": "zwave/Kueche/3/37/2/0",
-                "setOn": "zwave/Kueche/3/37/2/0/set"
+                "getOn": "zwave/Küche/9/37/2/currentValue",
+                "setOn": "zwave/Küche/9/37/2/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",
@@ -26,8 +26,8 @@
             "name": "Küche Tisch Licht",
             "caption": "Küche Tisch Licht",
             "topics": {
-                "getOn": "zwave/Kueche/3/37/1/0",
-                "setOn": "zwave/Kueche/3/37/1/0/set"
+                "getOn": "zwave/Küche/9/37/1/currentValue",
+                "setOn": "zwave/Küche/9/37/1/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",
@@ -98,8 +98,8 @@
             "name": "Wohnzimmer Schalter 1",
             "caption": "Wohnzimmer Schalter 1",
             "topics": {
-                "getOn": "zwave/Wohnzimmer/5/37/2/0",
-                "setOn": "zwave/Wohnzimmer/5/37/2/0/set"
+                "getOn": "zwave/Wohnzimmer/8/37/1/currentValue",
+                "setOn": "zwave/Wohnzimmer/8/37/1/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",
