@@ -19,13 +19,12 @@ function init( params ) {
     config.url = config.url ? config.url : "http://localhost:1883";
     // log(config)
     let state = {}
-    const t1 = (config.period) ? new a.Timerobj(
-                    params,
-                    "t1",
-                    "shellies/shelly1-554C88/relay/0/command",
-                    "on",
-                    "off",
-                    config.period) : null
+    const t1 = 
+    (config.period) ? new a.TimerObj(
+        params,
+        "t1",
+        "shellies/shelly1-554C88/relay/0/command") 
+    : null
     
     /**
      * Encode message before sending.
@@ -56,10 +55,10 @@ function init( params ) {
         t.log_de(log, message, info, message)
         msg = JSON.parse(message)
         //log(msg)
+
         if (info.topic == "zigbee2mqtt/Wohnzimmerschalter") {
             if (["on-press","on-hold"].includes(msg.action)) {
                 publish("shellies/shellyix3-98CDAC24BCC3/input/2","1")
-                //publish("zwave/Wohnzimmer/5/37/2/0/set",true)
             };
             if (["up-press","up-hold","down-press","down-hold"].includes(msg.action)) {
                 publish("zigbee2mqtt/Wohnzimmer1/setBrightness",JSON.stringify({"brightness":msg.brightness}));
@@ -68,18 +67,16 @@ function init( params ) {
             };   
             if (["off-press","off-hold"].includes(msg.action)) {
                 publish("shellies/shellyix3-98CDAC24BCC3/input/2","0")
-                //publish("zwave/Wohnzimmer/5/37/2/0/set",false)
-            };        // output( message );
+            };
         };
+
         if (info.topic == "zigbee2mqtt/FlurSchalter") {
             if (["on-press","on-hold","up-press","up-hold"].includes(msg.action)) {
                 publish("shellies/shelly1-554C88/relay/0/command","on")
-                //publish("zwave/Wohnzimmer/5/37/2/0/set",true)
             };
             if (["off-press","off-hold","down-press","down-hold"].includes(msg.action)) {
                 publish("shellies/shelly1-554C88/relay/0/command","off")
-                //publish("zwave/Wohnzimmer/5/37/2/0/set",false)
-            };        // output( message );
+            };
         }
 
     }

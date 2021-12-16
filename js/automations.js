@@ -4,7 +4,7 @@
 
  'use strict';
 
-class Automation {
+class AutomationObj {
     constructor(params) {
         this.log = params.log;
         this.config = params.config;
@@ -13,21 +13,22 @@ class Automation {
     }
 }
 
-class Timerobj extends Automation{
-    constructor(params, name, topic, onvalue, offvalue, period) {
+class TimerObj extends AutomationObj {
+    constructor(params, name, topic) {
         super(params);
         this.topic = topic;
-        this.onvalue = onvalue;
-        this.offvalue = offvalue;
+        this.onvalue = this.config.onValue;
+        this.offvalue = this.config.offValue;
         this.timercount = 0;
-        this.period = period || 10;
+        this.period = this.config.period || 10;
         this.log(`timer ${name} with period ${this.period} sec.`)
     }
 
     timer(info) {
         if (this.timercount <= 0) {
                 this.publish(this.topic,this.onvalue)
-                this.log(`${info.topic}, set ${this.topic} to ${this.onvalue}`)
+                this.log(`${info.topic}, set ${this.topic} to ${this.onvalue}`);
+                this.log(`timer ${this.period} sec. started.`)
             }
             this.timercount +=1
             //this.log(`${info.topic} counter = ${this.timercount}`)
@@ -44,5 +45,5 @@ class Timerobj extends Automation{
 
  // export initialisation function
 module.exports = {
-    Timerobj
+    TimerObj
 };

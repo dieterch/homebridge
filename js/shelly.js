@@ -17,18 +17,16 @@ function init( params ) {
     let state = "false";
     let timeout = 3;
 
-    //setTimeout( () => {
     let msg = `--> shelly.js. ${config._ ? config._ : ''}`;
     log( msg );
     config.url = config.url ? config.url : "http://localhost:1883";
-    const t1 = (config.period) ? new a.Timerobj(
+
+    const t1 = 
+    (config.period) ? new a.TimerObj(
         params,
         "t1",
-        "shellies/shelly1-2C1435/relay/0/command",
-        "on",
-        "off",
-        config.period) : null
-    //}, 1000 );
+        "shellies/shelly1-2C1435/relay/0/command") 
+    : null
 
     /**
      * Encode message before sending.
@@ -60,12 +58,9 @@ function init( params ) {
                 return message
             }
         };
-        //WC Timer - funktioniert noch nicht ...
+        //WC Timer
         if (info.topic == "shellies/shelly1-2C1435/relay/0/command") {
             msg = message.toString()
-            //log(msg)
-            //log(state)
-            //log(`in encode message: ${msg}, state: ${state} , (state != message) ${state != msg}`)
             if (state != msg) {
                 if (msg == "on") { 
                     if (t1) { t1.timer(info); }
@@ -89,13 +84,10 @@ function init( params ) {
                 return message
             }
         };
-        //WC Timer - funktioniert noch nicht ...
+        //WC Timer
         if (info.topic == "shellies/shelly1-2C1435/relay/0") {
             msg = message.toString()
-            //log(msg)
-            //log(state)
-            //log(`in decode message: ${msg}, state: ${state} , (state != message) ${state != msg}`)
-            if (state != msg) {
+           if (state != msg) {
                 if (msg == "on") { 
                     if (t1) { t1.timer(info); }
                 }
