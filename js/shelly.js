@@ -6,6 +6,7 @@
 
  'use strict';
  const t = require("./tools");
+ const a = require("./automations");
 
 /**
  * Initialise codec for accessory
@@ -16,11 +17,18 @@ function init( params ) {
     let state = "false";
     let timeout = 3;
 
-    setTimeout( () => {
-        let msg = `--> shelly.js. ${config._ ? config._ : ''}`;
-        log( msg );
-        config.url = config.url ? config.url : "http://localhost:1883"
-    }, 1000 );
+    //setTimeout( () => {
+    let msg = `--> shelly.js. ${config._ ? config._ : ''}`;
+    log( msg );
+    config.url = config.url ? config.url : "http://localhost:1883";
+    const t1 = (config.period) ? new a.Timerobj(
+        params,
+        "t1",
+        "shellies/shelly1-2C1435/relay/0/command",
+        "on",
+        "off",
+        config.period) : null
+    //}, 1000 );
 
     /**
      * Encode message before sending.
@@ -54,18 +62,16 @@ function init( params ) {
         };
         //WC Timer - funktioniert noch nicht ...
         if (info.topic == "shellies/shelly1-2C1435/relay/0/command") {
-            log("in WC Schalter encode")
-            let msg = message.toString()
+            msg = message.toString()
+            //log(msg)
+            //log(state)
+            //log(`in encode message: ${msg}, state: ${state} , (state != message) ${state != msg}`)
             if (state != msg) {
-                t.log_de(log, message, info, message,true);
-                state = msg;
-                setTimeout( () => {
-                    notify(info.property, "off")
-                    log("decode: timeout expired")
-                }, 1000 * timeout );
+                if (msg == "on") { 
+                    if (t1) { t1.timer(info); }
+                }
+                state = msg
                 return message
-            } else {
-                log("encode: message skipped")
             }
         }
         //output( message );
@@ -85,20 +91,16 @@ function init( params ) {
         };
         //WC Timer - funktioniert noch nicht ...
         if (info.topic == "shellies/shelly1-2C1435/relay/0") {
-            log("in WC Schalter decode");
-            log(state)
-            let msg = message.toString()
-            log(msg)
+            msg = message.toString()
+            //log(msg)
+            //log(state)
+            //log(`in decode message: ${msg}, state: ${state} , (state != message) ${state != msg}`)
             if (state != msg) {
-                t.log_de(log, message, info, message,true)
-                state = msg;
-                setTimeout( () => {
-                    notify(info.property, "off")
-                    log("decode: timeout expired")
-                }, 1000 * timeout );
+                if (msg == "on") { 
+                    if (t1) { t1.timer(info); }
+                }
+                state = msg
                 return message
-            } else {
-                log("decode: message skipped")
             }
         }        
         // output( message );

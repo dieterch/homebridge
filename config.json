@@ -314,6 +314,8 @@
             "integerValue": "false",
             "onValue": "on",
             "offValue": "off",
+            "codec": "js/shelly.js",
+            "period": "600",
             "__": "_____ Ende der Sektion WC ____"
         },
         {

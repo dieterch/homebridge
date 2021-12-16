@@ -17,7 +17,14 @@ function init( params ) {
     setTimeout( () => {
         let msg = `--> tradfri.js. ${config._ ? config._ : ''}`;
         log( msg );
-        config.url = config.url ? config.url : "http://localhost:1883" // default MQTT server is localhost
+        config.url = config.url ? config.url : "http://localhost:1883"; // default MQTT server is localhost
+        const t1 = (config.period) ? new a.Timerobj(
+            params,
+            "t1",
+            "shellies/shelly1-554C88/relay/0/command",
+            "on",
+            "off",
+            config.period) : null
     }, 1000 );
 
     /**

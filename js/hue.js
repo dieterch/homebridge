@@ -6,6 +6,7 @@
 
  'use strict';
  const t = require("./tools");
+ const a = require("./automations");
 
 /**
  * Initialise codec for accessory
@@ -18,10 +19,14 @@ function init( params ) {
     config.url = config.url ? config.url : "http://localhost:1883";
     // log(config)
     let state = {}
-    if (config.type == "motionSensor") {
-        state.period = config.period
-    }
-
+    const t1 = (config.period) ? new a.Timerobj(
+                    params,
+                    "t1",
+                    "shellies/shelly1-554C88/relay/0/command",
+                    "on",
+                    "off",
+                    config.period) : null
+    
     /**
      * Encode message before sending.
      * The output function may be called to deliver an encoded value for the property later.
@@ -43,15 +48,7 @@ function init( params ) {
     function decode_motionDetected( message, info, output ) { // eslint-disable-line no-unused-vars
         t.log_de(log, message, info, message)
         msg = JSON.parse(message);
-        //Vorzimmer Licht Timer ...
-        if (info.topic == "zigbee2mqtt/FlurBewegungsmelder") {
-            if (msg.occupancy) {
-                publish("shellies/shelly1-554C88/relay/0/command","on")
-                setTimeout( () => {
-                    publish("shellies/shelly1-554C88/relay/0/command","off")
-                }, 1000 * parseInt(state.period) );
-            } 
-        }
+        if (msg.occupancy) { if(t1) { t1.timer(info); }} 
         output( message );
     }
 
