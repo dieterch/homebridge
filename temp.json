@@ -1,0 +1,1214 @@
+[
+    {
+        "definition": null,
+        "endpoints": {
+            "1": {
+                "bindings": [],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genTime",
+                        "genOta"
+                    ],
+                    "output": [
+                        "genPowerCfg",
+                        "genPollCtrl",
+                        "ssIasZone"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            },
+            "242": {
+                "bindings": [],
+                "clusters": {
+                    "input": [],
+                    "output": [
+                        "greenPower"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            }
+        },
+        "friendly_name": "Coordinator",
+        "ieee_address": "0x00212effff0552d2",
+        "interview_completed": true,
+        "interviewing": false,
+        "network_address": 0,
+        "supported": false,
+        "type": "Coordinator"
+    },
+    {
+        "date_code": "20201102",
+        "definition": {
+            "description": "TRADFRI LED bulb E12/E14/E17 400 lumen, dimmable warm white, chandelier opal",
+            "exposes": [
+                {
+                    "features": [
+                        {
+                            "access": 7,
+                            "description": "On/off state of this light",
+                            "name": "state",
+                            "property": "state",
+                            "type": "binary",
+                            "value_off": "OFF",
+                            "value_on": "ON",
+                            "value_toggle": "TOGGLE"
+                        },
+                        {
+                            "access": 7,
+                            "description": "Brightness of this light",
+                            "name": "brightness",
+                            "property": "brightness",
+                            "type": "numeric",
+                            "value_max": 254,
+                            "value_min": 0
+                        }
+                    ],
+                    "type": "light"
+                },
+                {
+                    "access": 2,
+                    "description": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+                    "name": "effect",
+                    "property": "effect",
+                    "type": "enum",
+                    "values": [
+                        "blink",
+                        "breathe",
+                        "okay",
+                        "channel_change",
+                        "finish_effect",
+                        "stop_effect"
+                    ]
+                },
+                {
+                    "access": 7,
+                    "description": "Controls the behavior when the device is powered on",
+                    "name": "power_on_behavior",
+                    "property": "power_on_behavior",
+                    "type": "enum",
+                    "values": [
+                        "off",
+                        "previous",
+                        "on"
+                    ]
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "LED1649C5",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Controls the transition time (in seconds) of on/off, brightness, color temperature (if applicable) and color (if applicable) changes. Defaults to `0` (no transition).",
+                    "name": "transition",
+                    "property": "transition",
+                    "type": "numeric",
+                    "value_min": 0
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "IKEA"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genIdentify",
+                        "genGroups",
+                        "genScenes",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "haDiagnostic",
+                        "touchlink"
+                    ],
+                    "output": [
+                        "genScenes",
+                        "genOta",
+                        "genPollCtrl",
+                        "touchlink"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            }
+        },
+        "friendly_name": "StehlampeUnten",
+        "ieee_address": "0x086bd7fffe008bba",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "IKEA of Sweden",
+        "model_id": "TRADFRI bulb E14 W op/ch 400lm",
+        "network_address": 58385,
+        "power_source": "Mains (single phase)",
+        "software_build_id": "2.3.068",
+        "supported": true,
+        "type": "Router"
+    },
+    {
+        "date_code": "20201102",
+        "definition": {
+            "description": "TRADFRI LED bulb E12/E14/E17 400 lumen, dimmable warm white, chandelier opal",
+            "exposes": [
+                {
+                    "features": [
+                        {
+                            "access": 7,
+                            "description": "On/off state of this light",
+                            "name": "state",
+                            "property": "state",
+                            "type": "binary",
+                            "value_off": "OFF",
+                            "value_on": "ON",
+                            "value_toggle": "TOGGLE"
+                        },
+                        {
+                            "access": 7,
+                            "description": "Brightness of this light",
+                            "name": "brightness",
+                            "property": "brightness",
+                            "type": "numeric",
+                            "value_max": 254,
+                            "value_min": 0
+                        }
+                    ],
+                    "type": "light"
+                },
+                {
+                    "access": 2,
+                    "description": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+                    "name": "effect",
+                    "property": "effect",
+                    "type": "enum",
+                    "values": [
+                        "blink",
+                        "breathe",
+                        "okay",
+                        "channel_change",
+                        "finish_effect",
+                        "stop_effect"
+                    ]
+                },
+                {
+                    "access": 7,
+                    "description": "Controls the behavior when the device is powered on",
+                    "name": "power_on_behavior",
+                    "property": "power_on_behavior",
+                    "type": "enum",
+                    "values": [
+                        "off",
+                        "previous",
+                        "on"
+                    ]
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "LED1649C5",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Controls the transition time (in seconds) of on/off, brightness, color temperature (if applicable) and color (if applicable) changes. Defaults to `0` (no transition).",
+                    "name": "transition",
+                    "property": "transition",
+                    "type": "numeric",
+                    "value_min": 0
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "IKEA"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genIdentify",
+                        "genGroups",
+                        "genScenes",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "haDiagnostic",
+                        "touchlink"
+                    ],
+                    "output": [
+                        "genScenes",
+                        "genOta",
+                        "genPollCtrl",
+                        "touchlink"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            }
+        },
+        "friendly_name": "StehlampeOben",
+        "ieee_address": "0x086bd7fffe060f26",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "IKEA of Sweden",
+        "model_id": "TRADFRI bulb E14 W op/ch 400lm",
+        "network_address": 64479,
+        "power_source": "Mains (single phase)",
+        "software_build_id": "2.3.068",
+        "supported": true,
+        "type": "Router"
+    },
+    {
+        "date_code": "20200311",
+        "definition": {
+            "description": "TRADFRI LED bulb E26/E27 980 lumen, dimmable, white spectrum, opal white",
+            "exposes": [
+                {
+                    "features": [
+                        {
+                            "access": 7,
+                            "description": "On/off state of this light",
+                            "name": "state",
+                            "property": "state",
+                            "type": "binary",
+                            "value_off": "OFF",
+                            "value_on": "ON",
+                            "value_toggle": "TOGGLE"
+                        },
+                        {
+                            "access": 7,
+                            "description": "Brightness of this light",
+                            "name": "brightness",
+                            "property": "brightness",
+                            "type": "numeric",
+                            "value_max": 254,
+                            "value_min": 0
+                        },
+                        {
+                            "access": 7,
+                            "description": "Color temperature of this light",
+                            "name": "color_temp",
+                            "presets": [
+                                {
+                                    "description": "Coolest temperature supported",
+                                    "name": "coolest",
+                                    "value": 250
+                                },
+                                {
+                                    "description": "Cool temperature (250 mireds / 4000 Kelvin)",
+                                    "name": "cool",
+                                    "value": 250
+                                },
+                                {
+                                    "description": "Neutral temperature (370 mireds / 2700 Kelvin)",
+                                    "name": "neutral",
+                                    "value": 370
+                                },
+                                {
+                                    "description": "Warm temperature (454 mireds / 2200 Kelvin)",
+                                    "name": "warm",
+                                    "value": 454
+                                },
+                                {
+                                    "description": "Warmest temperature supported",
+                                    "name": "warmest",
+                                    "value": 454
+                                }
+                            ],
+                            "property": "color_temp",
+                            "type": "numeric",
+                            "unit": "mired",
+                            "value_max": 454,
+                            "value_min": 250
+                        },
+                        {
+                            "access": 7,
+                            "description": "Color temperature after cold power on of this light",
+                            "name": "color_temp_startup",
+                            "presets": [
+                                {
+                                    "description": "Coolest temperature supported",
+                                    "name": "coolest",
+                                    "value": 250
+                                },
+                                {
+                                    "description": "Cool temperature (250 mireds / 4000 Kelvin)",
+                                    "name": "cool",
+                                    "value": 250
+                                },
+                                {
+                                    "description": "Neutral temperature (370 mireds / 2700 Kelvin)",
+                                    "name": "neutral",
+                                    "value": 370
+                                },
+                                {
+                                    "description": "Warm temperature (454 mireds / 2200 Kelvin)",
+                                    "name": "warm",
+                                    "value": 454
+                                },
+                                {
+                                    "description": "Warmest temperature supported",
+                                    "name": "warmest",
+                                    "value": 454
+                                },
+                                {
+                                    "description": "Restore previous color_temp on cold power on",
+                                    "name": "previous",
+                                    "value": 65535
+                                }
+                            ],
+                            "property": "color_temp_startup",
+                            "type": "numeric",
+                            "unit": "mired",
+                            "value_max": 454,
+                            "value_min": 250
+                        }
+                    ],
+                    "type": "light"
+                },
+                {
+                    "access": 2,
+                    "description": "Triggers an effect on the light (e.g. make light blink for a few seconds)",
+                    "name": "effect",
+                    "property": "effect",
+                    "type": "enum",
+                    "values": [
+                        "blink",
+                        "breathe",
+                        "okay",
+                        "channel_change",
+                        "finish_effect",
+                        "stop_effect"
+                    ]
+                },
+                {
+                    "access": 7,
+                    "description": "Controls the behavior when the device is powered on",
+                    "name": "power_on_behavior",
+                    "property": "power_on_behavior",
+                    "type": "enum",
+                    "values": [
+                        "off",
+                        "previous",
+                        "on"
+                    ]
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "LED1545G12",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Controls the transition time (in seconds) of on/off, brightness, color temperature (if applicable) and color (if applicable) changes. Defaults to `0` (no transition).",
+                    "name": "transition",
+                    "property": "transition",
+                    "type": "numeric",
+                    "value_min": 0
+                },
+                {
+                    "access": 2,
+                    "description": "When enabled colors will be synced, e.g. if the light supports both color x/y and color temperature a conversion from color x/y to color temperature will be done when setting the x/y color (default true).",
+                    "name": "color_sync",
+                    "property": "color_sync",
+                    "type": "binary",
+                    "value_off": false,
+                    "value_on": true
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "IKEA"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genIdentify",
+                        "genGroups",
+                        "genScenes",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "lightingColorCtrl",
+                        "touchlink",
+                        "64636"
+                    ],
+                    "output": [
+                        "genScenes",
+                        "genOta",
+                        "genPollCtrl",
+                        "touchlink"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            },
+            "242": {
+                "bindings": [],
+                "clusters": {
+                    "input": [
+                        "greenPower"
+                    ],
+                    "output": [
+                        "greenPower"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            }
+        },
+        "friendly_name": "StehlampeEsszimmer",
+        "ieee_address": "0x000b57fffeece596",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "IKEA of Sweden",
+        "model_id": "TRADFRI bulb E27 WS opal 980lm",
+        "network_address": 20701,
+        "power_source": "Mains (single phase)",
+        "software_build_id": "2.3.050",
+        "supported": true,
+        "type": "Router"
+    },
+    {
+        "date_code": "20170302",
+        "definition": {
+            "description": "TRADFRI remote control",
+            "exposes": [
+                {
+                    "access": 1,
+                    "description": "Remaining battery in %",
+                    "name": "battery",
+                    "property": "battery",
+                    "type": "numeric",
+                    "unit": "%",
+                    "value_max": 100,
+                    "value_min": 0
+                },
+                {
+                    "access": 1,
+                    "description": "Triggered action (e.g. a button click)",
+                    "name": "action",
+                    "property": "action",
+                    "type": "enum",
+                    "values": [
+                        "arrow_left_click",
+                        "arrow_left_hold",
+                        "arrow_left_release",
+                        "arrow_right_click",
+                        "arrow_right_hold",
+                        "arrow_right_release",
+                        "brightness_down_click",
+                        "brightness_down_hold",
+                        "brightness_down_release",
+                        "brightness_up_click",
+                        "brightness_up_hold",
+                        "brightness_up_release",
+                        "toggle"
+                    ]
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "E1524/E1810",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Set to false to disable the legacy integration (highly recommended), will change structure of the published payload (default true).",
+                    "name": "legacy",
+                    "property": "legacy",
+                    "type": "binary",
+                    "value_off": false,
+                    "value_on": true
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "IKEA"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [
+                    {
+                        "cluster": "genOnOff",
+                        "target": {
+                            "id": 901,
+                            "type": "group"
+                        }
+                    },
+                    {
+                        "cluster": "genPowerCfg",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    }
+                ],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genPowerCfg",
+                        "genIdentify",
+                        "genAlarms",
+                        "haDiagnostic",
+                        "touchlink"
+                    ],
+                    "output": [
+                        "genIdentify",
+                        "genGroups",
+                        "genScenes",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "genOta",
+                        "touchlink"
+                    ]
+                },
+                "configured_reportings": [
+                    {
+                        "attribute": "batteryPercentageRemaining",
+                        "cluster": "genPowerCfg",
+                        "maximum_report_interval": 62000,
+                        "minimum_report_interval": 3600,
+                        "reportable_change": 0
+                    }
+                ],
+                "scenes": []
+            }
+        },
+        "friendly_name": "0x90fd9ffffe08cdc9",
+        "ieee_address": "0x90fd9ffffe08cdc9",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "IKEA of Sweden",
+        "model_id": "TRADFRI remote control",
+        "network_address": 60001,
+        "power_source": "Battery",
+        "software_build_id": "1.2.214",
+        "supported": true,
+        "type": "EndDevice"
+    },
+    {
+        "date_code": "20160302",
+        "definition": {
+            "description": "Hue dimmer switch",
+            "exposes": [
+                {
+                    "access": 1,
+                    "description": "Remaining battery in %",
+                    "name": "battery",
+                    "property": "battery",
+                    "type": "numeric",
+                    "unit": "%",
+                    "value_max": 100,
+                    "value_min": 0
+                },
+                {
+                    "access": 1,
+                    "description": "Triggered action (e.g. a button click)",
+                    "name": "action",
+                    "property": "action",
+                    "type": "enum",
+                    "values": [
+                        "on-press",
+                        "on-hold",
+                        "on-hold-release",
+                        "up-press",
+                        "up-hold",
+                        "up-hold-release",
+                        "down-press",
+                        "down-hold",
+                        "down-hold-release",
+                        "off-press",
+                        "off-hold",
+                        "off-hold-release"
+                    ]
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "324131092621",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Set to false to disable the legacy integration (highly recommended), will change structure of the published payload (default true).",
+                    "name": "legacy",
+                    "property": "legacy",
+                    "type": "binary",
+                    "value_off": false,
+                    "value_on": true
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "Philips"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [
+                    {
+                        "cluster": "genOnOff",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "genLevelCtrl",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    }
+                ],
+                "clusters": {
+                    "input": [
+                        "genBasic"
+                    ],
+                    "output": [
+                        "genBasic",
+                        "genIdentify",
+                        "genGroups",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "genScenes"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            },
+            "2": {
+                "bindings": [
+                    {
+                        "cluster": "manuSpecificPhilips",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "genPowerCfg",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    }
+                ],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genPowerCfg",
+                        "genIdentify",
+                        "genBinaryInput",
+                        "manuSpecificPhilips"
+                    ],
+                    "output": [
+                        "genOta"
+                    ]
+                },
+                "configured_reportings": [
+                    {
+                        "attribute": "batteryPercentageRemaining",
+                        "cluster": "genPowerCfg",
+                        "maximum_report_interval": 62000,
+                        "minimum_report_interval": 3600,
+                        "reportable_change": 0
+                    }
+                ],
+                "scenes": []
+            }
+        },
+        "friendly_name": "FlurSchalter",
+        "ieee_address": "0x0017880108704513",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "Philips",
+        "model_id": "RWL021",
+        "network_address": 19375,
+        "power_source": "Battery",
+        "software_build_id": "5.45.1.17846",
+        "supported": true,
+        "type": "EndDevice"
+    },
+    {
+        "date_code": "20190219",
+        "definition": {
+            "description": "Hue motion sensor",
+            "exposes": [
+                {
+                    "access": 1,
+                    "description": "Measured temperature value",
+                    "name": "temperature",
+                    "property": "temperature",
+                    "type": "numeric",
+                    "unit": "°C"
+                },
+                {
+                    "access": 1,
+                    "description": "Indicates whether the device detected occupancy",
+                    "name": "occupancy",
+                    "property": "occupancy",
+                    "type": "binary",
+                    "value_off": false,
+                    "value_on": true
+                },
+                {
+                    "access": 1,
+                    "description": "Remaining battery in %",
+                    "name": "battery",
+                    "property": "battery",
+                    "type": "numeric",
+                    "unit": "%",
+                    "value_max": 100,
+                    "value_min": 0
+                },
+                {
+                    "access": 1,
+                    "description": "Measured illuminance in lux",
+                    "name": "illuminance_lux",
+                    "property": "illuminance_lux",
+                    "type": "numeric",
+                    "unit": "lx"
+                },
+                {
+                    "access": 1,
+                    "description": "Raw measured illuminance",
+                    "name": "illuminance",
+                    "property": "illuminance",
+                    "type": "numeric"
+                },
+                {
+                    "access": 7,
+                    "name": "motion_sensitivity",
+                    "property": "motion_sensitivity",
+                    "type": "enum",
+                    "values": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                },
+                {
+                    "access": 7,
+                    "description": "Blink green LED on motion detection",
+                    "name": "led_indication",
+                    "property": "led_indication",
+                    "type": "binary",
+                    "value_off": false,
+                    "value_on": true
+                },
+                {
+                    "access": 7,
+                    "name": "occupancy_timeout",
+                    "property": "occupancy_timeout",
+                    "type": "numeric",
+                    "unit": "second",
+                    "value_max": 65535,
+                    "value_min": 0
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "9290012607",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Number of digits after decimal point for temperature, takes into effect on next report of device.",
+                    "name": "temperature_precision",
+                    "property": "temperature_precision",
+                    "type": "numeric",
+                    "value_max": 3,
+                    "value_min": 0
+                },
+                {
+                    "access": 2,
+                    "description": "Calibrates the temperature value (absolute offset), takes into effect on next report of device.",
+                    "name": "temperature_calibration",
+                    "property": "temperature_calibration",
+                    "type": "numeric"
+                },
+                {
+                    "access": 2,
+                    "description": "Number of digits after decimal point for illuminance, takes into effect on next report of device.",
+                    "name": "illuminance_precision",
+                    "property": "illuminance_precision",
+                    "type": "numeric",
+                    "value_max": 3,
+                    "value_min": 0
+                },
+                {
+                    "access": 2,
+                    "description": "Calibrates the illuminance value (percentual offset), takes into effect on next report of device.",
+                    "name": "illuminance_calibration",
+                    "property": "illuminance_calibration",
+                    "type": "numeric"
+                },
+                {
+                    "access": 2,
+                    "description": "Number of digits after decimal point for illuminance_lux, takes into effect on next report of device.",
+                    "name": "illuminance_lux_precision",
+                    "property": "illuminance_lux_precision",
+                    "type": "numeric",
+                    "value_max": 3,
+                    "value_min": 0
+                },
+                {
+                    "access": 2,
+                    "description": "Calibrates the illuminance_lux value (percentual offset), takes into effect on next report of device.",
+                    "name": "illuminance_lux_calibration",
+                    "property": "illuminance_lux_calibration",
+                    "type": "numeric"
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "Philips"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [],
+                "clusters": {
+                    "input": [
+                        "genBasic"
+                    ],
+                    "output": [
+                        "genBasic",
+                        "genIdentify",
+                        "genGroups",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "lightingColorCtrl",
+                        "genScenes"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            },
+            "2": {
+                "bindings": [
+                    {
+                        "cluster": "genPowerCfg",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "msIlluminanceMeasurement",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "msTemperatureMeasurement",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "msOccupancySensing",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    }
+                ],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genPowerCfg",
+                        "genIdentify",
+                        "msOccupancySensing",
+                        "msIlluminanceMeasurement",
+                        "msTemperatureMeasurement"
+                    ],
+                    "output": [
+                        "genOta"
+                    ]
+                },
+                "configured_reportings": [
+                    {
+                        "attribute": "batteryPercentageRemaining",
+                        "cluster": "genPowerCfg",
+                        "maximum_report_interval": 62000,
+                        "minimum_report_interval": 3600,
+                        "reportable_change": 0
+                    },
+                    {
+                        "attribute": "occupancy",
+                        "cluster": "msOccupancySensing",
+                        "maximum_report_interval": 3600,
+                        "minimum_report_interval": 0,
+                        "reportable_change": 0
+                    },
+                    {
+                        "attribute": "measuredValue",
+                        "cluster": "msTemperatureMeasurement",
+                        "maximum_report_interval": 3600,
+                        "minimum_report_interval": 10,
+                        "reportable_change": 100
+                    },
+                    {
+                        "attribute": "measuredValue",
+                        "cluster": "msIlluminanceMeasurement",
+                        "maximum_report_interval": 3600,
+                        "minimum_report_interval": 10,
+                        "reportable_change": 5
+                    }
+                ],
+                "scenes": []
+            }
+        },
+        "friendly_name": "FlurBewegungsmelder",
+        "ieee_address": "0x0017880104b60bfa",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "Philips",
+        "model_id": "SML001",
+        "network_address": 58163,
+        "power_source": "Battery",
+        "software_build_id": "6.1.1.27575",
+        "supported": true,
+        "type": "EndDevice"
+    },
+    {
+        "date_code": "20190410",
+        "definition": {
+            "description": "Hue dimmer switch",
+            "exposes": [
+                {
+                    "access": 1,
+                    "description": "Remaining battery in %",
+                    "name": "battery",
+                    "property": "battery",
+                    "type": "numeric",
+                    "unit": "%",
+                    "value_max": 100,
+                    "value_min": 0
+                },
+                {
+                    "access": 1,
+                    "description": "Triggered action (e.g. a button click)",
+                    "name": "action",
+                    "property": "action",
+                    "type": "enum",
+                    "values": [
+                        "on-press",
+                        "on-hold",
+                        "on-hold-release",
+                        "up-press",
+                        "up-hold",
+                        "up-hold-release",
+                        "down-press",
+                        "down-hold",
+                        "down-hold-release",
+                        "off-press",
+                        "off-hold",
+                        "off-hold-release"
+                    ]
+                },
+                {
+                    "access": 1,
+                    "description": "Link quality (signal strength)",
+                    "name": "linkquality",
+                    "property": "linkquality",
+                    "type": "numeric",
+                    "unit": "lqi",
+                    "value_max": 255,
+                    "value_min": 0
+                }
+            ],
+            "model": "324131092621",
+            "options": [
+                {
+                    "access": 2,
+                    "description": "Set to false to disable the legacy integration (highly recommended), will change structure of the published payload (default true).",
+                    "name": "legacy",
+                    "property": "legacy",
+                    "type": "binary",
+                    "value_off": false,
+                    "value_on": true
+                }
+            ],
+            "supports_ota": true,
+            "vendor": "Philips"
+        },
+        "endpoints": {
+            "1": {
+                "bindings": [
+                    {
+                        "cluster": "genOnOff",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "genLevelCtrl",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    }
+                ],
+                "clusters": {
+                    "input": [
+                        "genBasic"
+                    ],
+                    "output": [
+                        "genBasic",
+                        "genIdentify",
+                        "genGroups",
+                        "genOnOff",
+                        "genLevelCtrl",
+                        "genScenes"
+                    ]
+                },
+                "configured_reportings": [],
+                "scenes": []
+            },
+            "2": {
+                "bindings": [
+                    {
+                        "cluster": "manuSpecificPhilips",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    },
+                    {
+                        "cluster": "genPowerCfg",
+                        "target": {
+                            "endpoint": 1,
+                            "ieee_address": "0x00212effff0552d2",
+                            "type": "endpoint"
+                        }
+                    }
+                ],
+                "clusters": {
+                    "input": [
+                        "genBasic",
+                        "genPowerCfg",
+                        "genIdentify",
+                        "genBinaryInput",
+                        "manuSpecificPhilips"
+                    ],
+                    "output": [
+                        "genOta"
+                    ]
+                },
+                "configured_reportings": [
+                    {
+                        "attribute": "batteryPercentageRemaining",
+                        "cluster": "genPowerCfg",
+                        "maximum_report_interval": 62000,
+                        "minimum_report_interval": 3600,
+                        "reportable_change": 0
+                    }
+                ],
+                "scenes": []
+            }
+        },
+        "friendly_name": "Wohnzimmerschalter",
+        "ieee_address": "0x0017880104f75e09",
+        "interview_completed": true,
+        "interviewing": false,
+        "manufacturer": "Philips",
+        "model_id": "RWL021",
+        "network_address": 16144,
+        "power_source": "Battery",
+        "software_build_id": "6.1.1.28573",
+        "supported": true,
+        "type": "EndDevice"
+    },
+    {
+        "date_code": "20200220",
+        "definition": {
+            "description": "TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white",
+            "exposes": [
+                {
+                    "features": [
+                        {
+                            "access": 7,
+                            "description": "On/off state of this light",
+                            "name": "state",
+                            "property": "state",
+                            "type": "binary",
+                            "value_off": "OFF",
+                            "value_on": "ON",
+                            "value_toggle": "TOGGLE"
+                        },
+                        {
+                            "access": 7,
+                            "description": "Brightness of this light",
+                            "name": "brightness",
+                            "property": "brightness",
+                            "type": "numeric",
+                            "value_max": 254,
+                            "value_min": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

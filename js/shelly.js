@@ -25,7 +25,9 @@ function init( params ) {
     (config.period) ? new a.TimerObj(
         params,
         "t1",
-        "shellies/shelly1-2C1435/relay/0/command") 
+        "shellies/shelly1-2C1435/relay/0/command",
+        "on",
+        "off") 
     : null
 
     /**

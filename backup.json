@@ -1,0 +1,47 @@
+{
+    "type": "statelessProgrammableSwitch",
+    "name": "IKEA Schalter 1",
+    "topics": {
+        "getSwitch": [
+            {
+                "topic": "zigbee2mqtt/IkeaSchalter1",
+                "apply": "return JSON.parse(message).action;"
+            },
+            {
+                "topic": "zigbee2mqtt/IkeaSchalter1",
+                "apply": "return JSON.parse(message).action;"
+            },
+            {
+                "topic": "zigbee2mqtt/IkeaSchalter1",
+                "apply": "return JSON.parse(message).action;"
+            }
+        ],
+        "getStatusLowBattery": {
+            "topic": "zigbee2mqtt/IkeaSchalter1",
+            "apply": "if (JSON.parse(message).battery < 20) return 1; else return 0;"
+        },
+        "getBatteryLevel": {
+            "topic": "zigbee2mqtt/IkeaSchalter1",
+            "apply": "return JSON.parse(message).battery;"
+        }
+    },
+    "switchValues": [
+        [
+            "toggle",
+            "toggle-hold",
+            "nix"
+        ],
+        [
+            "brightness_up_click",
+            "brightness_down_click",
+            "nix"
+        ],
+        [
+            "arrow_left_click",
+            "arrow_right_click",
+            "nix"
+        ]
+    ],
+    "accessory": "mqttthing",
+    "logMqtt": false
+}

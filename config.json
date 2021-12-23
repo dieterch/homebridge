@@ -161,7 +161,7 @@
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer Regal Schalter",
-            "caption": "Wohnzimmer_Regal_Licht",
+            "caption": "Wohnzimmer Regal Schalter",
             "topics": {
                 "getOn": "shellies/shellyplug-s-040D25/relay/0",
                 "setOn": "shellies/shellyplug-s-040D25/relay/0/command"
@@ -169,6 +169,32 @@
             "integerValue": "false",
             "onValue": "on",
             "offValue": "off"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "switch",
+            "name": "Wohnzimmer Christbaum Schalter",
+            "caption": "Wohnzimmer Christbaum Schalter",
+            "topics": {
+                "getOn": "shellies/shellyplug-s-6A6374/relay/0",
+                "setOn": "shellies/shellyplug-s-6A6374/relay/0/command"
+            },
+            "integerValue": "false",
+            "onValue": "on",
+            "offValue": "off"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "switch",
+            "name": "Wohnzimmer Lichterkette",
+            "caption": "Wohnzimmer Lichterkette",
+            "topics": {
+                "getOn": "zwave/Wohnzimmer/10/37/0/currentValue",
+                "setOn": "zwave/Wohnzimmer/10/37/0/targetValue/set"
+            },
+            "integerValue": "false",
+            "onValue": "true",
+            "offValue": "false"
         },
         {
             "accessory": "mqttthing",
@@ -536,50 +562,27 @@
         },
         {
             "type": "statelessProgrammableSwitch",
-            "name": "IKEADimmer1",
+            "name": "IKEA Schalter 1",
+            "caption": "IKEA Schalter 1",
             "topics": {
                 "getSwitch": [
                     {
-                        "topic": "zigbee2mqtt/0x90fd9ffffe08cdc9",
-                        "apply": "return JSON.parse(message).action;"
-                    },
-                    {
-                        "topic": "zigbee2mqtt/0x90fd9ffffe08cdc9",
-                        "apply": "return JSON.parse(message).action;"
-                    },
-                    {
-                        "topic": "zigbee2mqtt/0x90fd9ffffe08cdc9",
+                        "topic": "zigbee2mqtt/IkeaSchalter1",
                         "apply": "return JSON.parse(message).action;"
                     }
                 ],
                 "getStatusLowBattery": {
-                    "topic": "zigbee2mqtt/0x90fd9ffffe08cdc9",
-                    "apply": "if (JSON.parse(message).battery < 20) return 1; else return 0;"
+                    "topic": "zigbee2mqtt/IkeaSchalter1",
+                    "apply": "return (JSON.parse(message).battery < 20) ? 1 : 0;"
                 },
                 "getBatteryLevel": {
-                    "topic": "zigbee2mqtt/0x90fd9ffffe08cdc9",
+                    "topic": "zigbee2mqtt/IkeaSchalter1",
                     "apply": "return JSON.parse(message).battery;"
                 }
             },
-            "switchValues": [
-                [
-                    "toggle",
-                    "toggle-hold",
-                    "nix"
-                ],
-                [
-                    "brightness_up_click",
-                    "brightness_down_click",
-                    "nix"
-                ],
-                [
-                    "arrow_left_click",
-                    "arrow_right_click",
-                    "nix"
-                ]
-            ],
             "accessory": "mqttthing",
-            "logMqtt": false
+            "logMqtt": false,
+            "codec": "js/tradfri.js"
         },
         {
             "name": "test",

@@ -61,7 +61,9 @@ function init( params ) {
             if (t.debug()) { log(`zwave decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_de(log, message, info, msg);
-                //publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
+                /* setTimeout( () => {
+                    publish("shellies/shellyix3-98CDAC24BCC3/input/2",msg)
+                }, 1000); */
                 state = message
                 return message
             }

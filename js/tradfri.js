@@ -6,6 +6,7 @@
 
  'use strict';
  const t = require("./tools");
+ const a = require("./automations");
 
 /**
  * Initialise codec for accessory
@@ -14,18 +15,25 @@ function init( params ) {
     // extract parameters for convenience
     let { log, config, publish, notify } = params;
 
-    setTimeout( () => {
-        let msg = `--> tradfri.js. ${config._ ? config._ : ''}`;
-        log( msg );
-        config.url = config.url ? config.url : "http://localhost:1883"; // default MQTT server is localhost
-        const t1 = (config.period) ? new a.Timerobj(
-            params,
-            "t1",
-            "shellies/shelly1-554C88/relay/0/command",
-            "on",
-            "off",
-            config.period) : null
-    }, 1000 );
+    //setTimeout( () => {
+    let msg = `--> tradfri.js. ${config._ ? config._ : ''}`;
+    log( msg );
+    config.url = config.url ? config.url : "http://localhost:1883"; // default MQTT server is localhost
+    
+    const toggle1 = new a.ToggleObj(
+        params,
+        "toggle1",
+        "shellies/shellyplug-s-6A6374/relay/0/command",
+        "on",
+        "off")
+
+    const toggle2 = new a.ToggleObj(
+        params,
+        "toggle2",
+        "zwave/Wohnzimmer/10/37/0/targetValue/set",
+        "true",
+        "false")
+    //}, 1000 );
 
     /**
      * Encode message before sending.
@@ -43,6 +51,45 @@ function init( params ) {
     function decode( message, info, output ) { // eslint-disable-line no-unused-vars
         t.log_de(log, message, info, message)
         output( message );
+    }
+
+    function decode_Switch( message, info, output ) {
+        //t.log_de(log, message, info, message, true)
+        let msg = JSON.parse(message)
+        // log(`msg = ${msg}, message = ${message}`)
+
+        if (info.topic == "zigbee2mqtt/IkeaSchalter1") {
+            if (["toggle"].includes(msg.action)) {
+                //log("IkeaSwitch toggle pressed")
+                if (toggle1) { toggle1.toggle(info); }
+                //if (toggle2) { toggle2.toggle(info); }
+            };
+            if (["brightness_up_click"].includes(msg.action)) {
+                //log("IkeaSwitch toggle pressed")
+                if (toggle2) { toggle2.toggle(info); }
+                //if (toggle2) { toggle2.toggle(info); }
+            };
+            if ([
+                "toogle",
+                "toogle_hold",
+                "toogle_release",
+                "brightness_up_click",
+                "brightness_up_hold",
+                "brightness_up_release",
+                "brightness_down_click",
+                "brightness_down_hold",
+                "brightness_down_release",
+                "arrow_left_click",
+                "arrow_left_hold",
+                "arrow_left_release",
+                "arrow_right_click",
+                "arrow_right_hold",
+                "arrow_right_release"
+                ].includes(msg.action)) {
+                //log(`Ikeaswitch msg ${msg.action} received`)
+            };
+        }
+
     }
 
     function encode_on( message, info, output ) {
@@ -120,7 +167,10 @@ function init( params ) {
             colorTemperature: {
                 encode: encode_ColorTemperature,
                 decode: decode_ColorTemperature
-            }
+            },
+            switch0: {
+                decode: decode_Switch                
+            },
         }
     };
 }
