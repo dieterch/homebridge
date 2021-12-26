@@ -13,13 +13,13 @@ function debug(override = false) {
 
 function log_en( log, message, info, result, override = false) {
     if (debug(override)) {
-        log( `topic[${info.topic}], property[${info.property}] to MQTT msg[${message}]` );
+        log( `en -> topic[${info.topic}], property[${info.property}] to MQTT msg[${message}]` );
     }
 }
 
 function log_de( log, message, info, result, override = false) {
     if (debug(override)) {
-        log( `topic[${info.topic}], property[${info.property}] got msg[${message}] from MQTT, send msg[${result}] to mqtt-thing` );
+        log( `de -> topic[${info.topic}], property[${info.property}] got msg[${message}] from MQTT, send msg[${result}] to mqtt-thing` );
     }
 }
 

@@ -30,7 +30,7 @@ function init( params ) {
     const toggle2 = new a.ToggleObj(
         params,
         "toggle2",
-        "zwave/Wohnzimmer/10/37/0/targetValue/set",
+        "zwave/Lichterkette/37/0/targetValue/set",
         "true",
         "false")
     //}, 1000 );
@@ -40,6 +40,28 @@ function init( params ) {
      * The output function may be called to deliver an encoded value for the property later.
      */
     function encode( message, info, output ) {
+        /*
+        The encode() function is called to encode 
+        a message before publishing it to MQTT. 
+        
+        It is passed three parameters:
+
+        message is the message to be encoded
+
+        info is an object holding:
+            info.topic      -   the MQTT topic to be published
+            info.property   -   the property associated with the 
+                                publishing operation
+        
+        output is a function which may be called to deliver
+        the encoded value asynchronously
+        The encode() function may either 
+        return the encoded message, or it may 
+        deliver it asynchronously by passing 
+        it as a parameter to the provided 
+        output function. It if does neither, 
+        no value will be published.
+        */
         t.log_en(log, message, info, message);
         output( message );
     }
@@ -49,8 +71,30 @@ function init( params ) {
      * The output function may be called to deliver a decoded value for the property later.
      */
     function decode( message, info, output ) { // eslint-disable-line no-unused-vars
+        /*
+            The decode() function is called to decode a 
+            message received from MQTT before passing 
+            it for processing by MQTT-Thing. 
+            It takes three parameters:
+
+            message is the message to be decoded
+
+            info is an object holding:
+                info.topic - the MQTT topic received
+                info.property the property associated 
+                with the received message
+            
+            output is a function which may be called 
+            to deliver the decoded value asynchronously
+            
+            The decode() function may either return the 
+            decoded message, or it may deliver it asynchronously 
+            by passing it as a parameter to the provided 
+            output function. If it does neither, no 
+            notification will be passed on to MQTT-Thing.
+        */
         t.log_de(log, message, info, message)
-        output( message );
+        output(message);
     }
 
     function decode_Switch( message, info, output ) {
@@ -62,12 +106,10 @@ function init( params ) {
             if (["toggle"].includes(msg.action)) {
                 //log("IkeaSwitch toggle pressed")
                 if (toggle1) { toggle1.toggle(info); }
-                //if (toggle2) { toggle2.toggle(info); }
             };
             if (["brightness_up_click"].includes(msg.action)) {
-                //log("IkeaSwitch toggle pressed")
+                log("IkeaSwitch toggle pressed")
                 if (toggle2) { toggle2.toggle(info); }
-                //if (toggle2) { toggle2.toggle(info); }
             };
             if ([
                 "toogle",

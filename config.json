@@ -13,12 +13,13 @@
             "name": "Küche Arbeit Licht",
             "caption": "Küche Arbeit Licht",
             "topics": {
-                "getOn": "zwave/Küche/9/37/2/currentValue",
-                "setOn": "zwave/Küche/9/37/2/targetValue/set"
+                "getOn": "zwave/DoppelWandschalter/37/2/currentValue",
+                "setOn": "zwave/DoppelWandschalter/37/2/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",
-            "offValue": "false"
+            "offValue": "false",
+            "codec": "js/zwave.js"
         },
         {
             "accessory": "mqttthing",
@@ -26,12 +27,13 @@
             "name": "Küche Tisch Licht",
             "caption": "Küche Tisch Licht",
             "topics": {
-                "getOn": "zwave/Küche/9/37/1/currentValue",
-                "setOn": "zwave/Küche/9/37/1/targetValue/set"
+                "getOn": "zwave/DoppelWandschalter/37/1/currentValue",
+                "setOn": "zwave/DoppelWandschalter/37/1/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",
             "offValue": "false",
+            "codec": "js/zwave.js",
             "_": "_____ Ende der Sektion Küche ____"
         },
         {
@@ -98,23 +100,8 @@
             "name": "Wohnzimmer Schalter 1",
             "caption": "Wohnzimmer Schalter 1",
             "topics": {
-                "getOn": "zwave/Wohnzimmer/8/37/1/currentValue",
-                "setOn": "zwave/Wohnzimmer/8/37/1/targetValue/set"
-            },
-            "integerValue": "false",
-            "onValue": "true",
-            "offValue": "false",
-            "codec": "js/zwave.js"
-        },
-        {
-            "_": "13.12.2021: derzeit nicht verbaut",
-            "accessory": "mqttthing",
-            "type": "switch",
-            "name": "Wohnzimmer Schalter 2",
-            "caption": "Wohnzimmer Schalter 2",
-            "topics": {
-                "getOn": "zwave/Wohnzimmer/7/37/1/0",
-                "setOn": "zwave/Wohnzimmer/7/37/1/0/set"
+                "getOn": "zwave/Wandschalter1/currentValue",
+                "setOn": "zwave/Wandschalter1/37/1/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",
@@ -189,21 +176,8 @@
             "name": "Wohnzimmer Lichterkette",
             "caption": "Wohnzimmer Lichterkette",
             "topics": {
-                "getOn": "zwave/Wohnzimmer/10/37/0/currentValue",
-                "setOn": "zwave/Wohnzimmer/10/37/0/targetValue/set"
-            },
-            "integerValue": "false",
-            "onValue": "true",
-            "offValue": "false"
-        },
-        {
-            "accessory": "mqttthing",
-            "type": "switch",
-            "name": "Wohnzimmer TV BackSchalter",
-            "caption": "Wohnzimmer TV BackSchalter",
-            "topics": {
-                "getOn": "zwave/Wohnzimmer/4/37/1/0",
-                "setOn": "zwave/Wohnzimmer/4/37/1/0/set"
+                "getOn": "zwave/Lichterkette/currentValue",
+                "setOn": "zwave/Lichterkette/37/0/targetValue/set"
             },
             "integerValue": "false",
             "onValue": "true",

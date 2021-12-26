@@ -40,9 +40,11 @@ function init( params ) {
     }
 
     function encode_on( message, info, output ) {
+        t.log_en(log, message, info, message);
         //send to MQTT
-        if (info.topic == "zwave/Wohnzimmer/8/37/1/targetValue/set") {
-            let msg = (message == "true") ? "1" : "0";
+        if (info.topic == "zwave/Wandschalter1/37/1/targetValue/set") {
+        //if (info.topic == "zwave/Wohnzimmer/Wandschalter1/targetValue/set") {
+                let msg = (message == "true") ? "1" : "0";
             if (t.debug()) { log(`zwave encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_en(log, message, info, msg);
@@ -50,14 +52,28 @@ function init( params ) {
                 state = message
                 return message
             }
+        } 
+        if (info.topic == "zwave/Lichterkette/37/0/targetValue/set") {
+        //if (info.topic == "zwave/Wohnzimmer/Lichterkette/targetValue/set") {
+            //output( message );
+            return message
+        }
+        if (info.topic == "zwave/DoppelWandschalter/37/1/targetValue/set") {
+            //output( message );
+            return message
+        }   
+        if (info.topic == "zwave/DoppelWandschalter/37/2/targetValue/set") {
+            //output( message );
+            return message
         }
         //output( message );
     }
 
     function decode_on( message, info, output ) {
-        //send to mqtt-thing
-        if (info.topic == "zwave/Wohnzimmer/8/37/1/currentValue") {
-            let msg = (message == "true") ? "1" : "0";
+        t.log_de(log, message, info, message);
+        if (info.topic == "zwave/Wandschalter1/currentValue") {
+        //if (info.topic == "zwave/Wohnzimmer/Wandschalter1/currentValue") {
+        let msg = (message == "true") ? "1" : "0";
             if (t.debug()) { log(`zwave decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_de(log, message, info, msg);
@@ -68,7 +84,19 @@ function init( params ) {
                 return message
             }
         }
-        // output( message );
+        //if (info.topic == "zwave/Wohnzimmer/Lichterkette/currentValue") {
+        if (info.topic == "zwave/Lichterkette/currentValue") {
+                //output( message );
+            return message
+        }
+        if (info.topic == "zwave/DoppelWandschalter/37/1/currentValue") {
+            //output( message );
+            return message
+        }   
+        if (info.topic == "zwave/DoppelWandschalter/37/2/currentValue") {
+            //output( message );
+            return message
+        }
     }
     
     // return encode and decode functions

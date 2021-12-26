@@ -55,7 +55,7 @@ function init( params ) {
             if (t.debug()) { log(`shelly encode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_en(log, message, info, msg);
-                publish("zwave/Wohnzimmer/8/37/1/targetValue/set",msg)
+                publish("zwave/Wandschalter1/37/1/targetValue/set",msg)
                 state = message
                 return message
             }
@@ -81,7 +81,8 @@ function init( params ) {
             if (t.debug()) { log(`shelly decode: ${(state == message) ? "state == message: skip" : "state != message:  run"}`) }
             if (state != message) {
                 t.log_de(log, message, info, msg);
-                publish("zwave/Wohnzimmer/8/37/1/targetValue/set",msg) //heavy roundabout
+                //publish("zwave/Wohnzimmer/8/37/1/targetValue/set",msg) //heavy roundabout
+                publish("zwave/Wandschalter1/37/1/targetValue/set",msg) //heavy roundabout
                 state = message
                 return message
             }
