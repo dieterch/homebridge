@@ -49,8 +49,10 @@ function init( params ) {
     function decode_motionDetected( message, info, output ) { // eslint-disable-line no-unused-vars
         t.log_de(log, message, info, message)
         msg = JSON.parse(message);
-        if (msg.occupancy) { if(t1) { t1.timer(info); }} 
-        output( message );
+        if (info.topic == "zigbee2mqtt/FlurBewegungsmelder") {
+            if (msg.occupancy) { if(t1) { t1.timer(info); }} 
+            output( message );
+        }
     }
 
     function decode_Switch( message, info, output ) {

@@ -145,6 +145,30 @@
             "codec": "js/hue.js"
         },
         {
+            "type": "statelessProgrammableSwitch",
+            "name": "IKEA Schalter 1",
+            "caption": "IKEA Schalter 1",
+            "topics": {
+                "getSwitch": [
+                    {
+                        "topic": "zigbee2mqtt/IkeaSchalter1",
+                        "apply": "return JSON.parse(message).action;"
+                    }
+                ],
+                "getStatusLowBattery": {
+                    "topic": "zigbee2mqtt/IkeaSchalter1",
+                    "apply": "return (JSON.parse(message).battery < 20) ? 1 : 0;"
+                },
+                "getBatteryLevel": {
+                    "topic": "zigbee2mqtt/IkeaSchalter1",
+                    "apply": "return JSON.parse(message).battery;"
+                }
+            },
+            "accessory": "mqttthing",
+            "logMqtt": false,
+            "codec": "js/tradfri.js"
+        },
+        {
             "accessory": "mqttthing",
             "type": "switch",
             "name": "Wohnzimmer Regal Schalter",
@@ -515,6 +539,30 @@
             "offValue": "off"
         },
         {
+            "type": "statelessProgrammableSwitch",
+            "name": "IKEA Schalter 2",
+            "caption": "IKEA Schalter 2",
+            "topics": {
+                "getSwitch": [
+                    {
+                        "topic": "zigbee2mqtt/IkeaSchalter2",
+                        "apply": "return JSON.parse(message).action;"
+                    }
+                ],
+                "getStatusLowBattery": {
+                    "topic": "zigbee2mqtt/IkeaSchalter2",
+                    "apply": "return (JSON.parse(message).battery < 20) ? 1 : 0;"
+                },
+                "getBatteryLevel": {
+                    "topic": "zigbee2mqtt/IkeaSchalter2",
+                    "apply": "return JSON.parse(message).battery;"
+                }
+            },
+            "accessory": "mqttthing",
+            "logMqtt": false,
+            "codec": "js/tradfri.js"
+        },
+        {
             "accessory": "mqttthing",
             "type": "lightbulb",
             "name": "Esszimmer Stehlampe",
@@ -533,30 +581,6 @@
             "logMqtt": false,
             "codec": "js/tradfri.js",
             "_": "_____ Ende der Sektion Esszimmer ____"
-        },
-        {
-            "type": "statelessProgrammableSwitch",
-            "name": "IKEA Schalter 1",
-            "caption": "IKEA Schalter 1",
-            "topics": {
-                "getSwitch": [
-                    {
-                        "topic": "zigbee2mqtt/IkeaSchalter1",
-                        "apply": "return JSON.parse(message).action;"
-                    }
-                ],
-                "getStatusLowBattery": {
-                    "topic": "zigbee2mqtt/IkeaSchalter1",
-                    "apply": "return (JSON.parse(message).battery < 20) ? 1 : 0;"
-                },
-                "getBatteryLevel": {
-                    "topic": "zigbee2mqtt/IkeaSchalter1",
-                    "apply": "return JSON.parse(message).battery;"
-                }
-            },
-            "accessory": "mqttthing",
-            "logMqtt": false,
-            "codec": "js/tradfri.js"
         },
         {
             "name": "test",

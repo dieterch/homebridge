@@ -35,6 +35,24 @@ function scale_to(x1,y1,x2,y2,x){
     return Math.round((y2-y1)/(x2-x1)*(x-x1)+y1)
 }
 
+function limit(y, min, max) {
+    if (y < min) {
+        return min
+    }
+    if (y > max) {
+        return max
+    }
+    return y
+}
+
+function testlimit(log, min, max) {
+    log(`test limit -10 ${limit(-10, min, max)}`)
+    log(`test limit 0 ${limit(0, min, max)}`)
+    log(`test limit 100 ${limit(100, min, max)}`)
+    log(`test limit 255 ${limit(255, min, max)}`)
+    log(`test limit 500 ${limit(500, min, max)}`)
+}
+
  /*
   * Functions to convert HSV colors to RGB colors values for lightbulbs
   */
@@ -72,6 +90,8 @@ module.exports = {
     log_en,
     log_de,
     scale_to,
+    limit,
+    testlimit,
     HSVtoRGB,
     ScaledHSVtoRGB,
     rgb_to_cie

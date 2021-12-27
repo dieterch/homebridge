@@ -10,7 +10,26 @@
 
 /**
  * Initialise codec for accessory
- */
+ * Ikea Button-Actions
+    [
+    "toogle",
+    "toogle_hold",
+    "toogle_release",
+    "brightness_up_click",
+    "brightness_up_hold",
+    "brightness_up_release",
+    "brightness_down_click",
+    "brightness_down_hold",
+    "brightness_down_release",
+    "arrow_left_click",
+    "arrow_left_hold",
+    "arrow_left_release",
+    "arrow_right_click",
+    "arrow_right_hold",
+    "arrow_right_release"
+    ]
+*/
+
 function init( params ) {
     // extract parameters for convenience
     let { log, config, publish, notify } = params;
@@ -20,20 +39,71 @@ function init( params ) {
     log( msg );
     config.url = config.url ? config.url : "http://localhost:1883"; // default MQTT server is localhost
     
-    const toggle1 = new a.ToggleObj(
+    const Christbaum = new a.ToggleObj(
         params,
-        "toggle1",
+        "Christbaum",
         "shellies/shellyplug-s-6A6374/relay/0/command",
+        ["toggle"],
         "on",
         "off")
 
-    const toggle2 = new a.ToggleObj(
+    const LichterKette = new a.ToggleObj(
         params,
-        "toggle2",
+        "LichterKette",
         "zwave/Lichterkette/37/0/targetValue/set",
+        ["brightness_up_click"],
         "true",
         "false")
-    //}, 1000 );
+
+    const Wohnzimmer_Wandschalter1 = new a.ToggleObj(
+        params,
+        "Wohnzimmer_Wandschalter1",
+        "zwave/Wandschalter1/37/1/targetValue/set",
+        ["brightness_down_click"],
+        "true",
+        "false")
+
+    const WZLichtGroup = 
+        ["zigbee2mqtt/Wohnzimmer1/setBrightness",
+        "zigbee2mqtt/Wohnzimmer2/setBrightness",
+        "zigbee2mqtt/Wohnzimmer3/setBrightness"];
+
+    const WZ_Decken_Slider = new a.SliderObj(
+        params,
+        "WZ_Decken_Slider",
+        WZLichtGroup,
+        //["zigbee2mqtt/Wohnzimmer1/setBrightness"],
+        "arrow_right",
+        "arrow_left",
+        0,
+        255,
+        20)
+
+    const Esszimmer_Wandschalter = new a.ToggleObj(
+        params,
+        "Esszimmer_Wandschalter",
+        "shellies/shelly1-32CE66/relay/0/command",
+        ["toggle"],
+        "on",
+        "off")
+
+        const EZLichtGroup = 
+        ["zigbee2mqtt/Esszimmer1/setBrightness",
+        "zigbee2mqtt/Esszimmer2/setBrightness",
+        "zigbee2mqtt/Esszimmer3/setBrightness",
+        "zigbee2mqtt/Esszimmer4/setBrightness",
+        "zigbee2mqtt/Esszimmer5/setBrightness"];
+
+    const EZ_Decken_Slider = new a.SliderObj(
+        params,
+        "EZ_Decken_Slider",
+        EZLichtGroup,
+        "brightness_up",
+        "brightness_down",
+        0,
+        255,
+        20)
+        //}, 1000 );
 
     /**
      * Encode message before sending.
@@ -98,40 +168,19 @@ function init( params ) {
     }
 
     function decode_Switch( message, info, output ) {
-        //t.log_de(log, message, info, message, true)
+        t.log_de(log, message, info, message)
         let msg = JSON.parse(message)
         // log(`msg = ${msg}, message = ${message}`)
-
         if (info.topic == "zigbee2mqtt/IkeaSchalter1") {
-            if (["toggle"].includes(msg.action)) {
-                //log("IkeaSwitch toggle pressed")
-                if (toggle1) { toggle1.toggle(info); }
-            };
-            if (["brightness_up_click"].includes(msg.action)) {
-                log("IkeaSwitch toggle pressed")
-                if (toggle2) { toggle2.toggle(info); }
-            };
-            if ([
-                "toogle",
-                "toogle_hold",
-                "toogle_release",
-                "brightness_up_click",
-                "brightness_up_hold",
-                "brightness_up_release",
-                "brightness_down_click",
-                "brightness_down_hold",
-                "brightness_down_release",
-                "arrow_left_click",
-                "arrow_left_hold",
-                "arrow_left_release",
-                "arrow_right_click",
-                "arrow_right_hold",
-                "arrow_right_release"
-                ].includes(msg.action)) {
-                //log(`Ikeaswitch msg ${msg.action} received`)
-            };
-        }
-
+            if (Christbaum) { Christbaum.toggle(info, msg.action); }
+            if (LichterKette) { LichterKette.toggle(info,msg.action); }
+            if (Wohnzimmer_Wandschalter1) { Wohnzimmer_Wandschalter1.toggle(info,msg.action); }
+            if (WZ_Decken_Slider) { WZ_Decken_Slider.slider(info,msg.action) };
+        };
+        if (info.topic == "zigbee2mqtt/IkeaSchalter2") {
+            if (Esszimmer_Wandschalter) { Esszimmer_Wandschalter.toggle(info, msg.action); }
+            if (EZ_Decken_Slider) { EZ_Decken_Slider.slider(info,msg.action) };
+        };
     }
 
     function encode_on( message, info, output ) {
