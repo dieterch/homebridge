@@ -43,7 +43,7 @@ function init( params ) {
         params,
         "Christbaum",
         "shellies/shellyplug-s-6A6374/relay/0/command",
-        ["toggle"],
+        ["arrow_left_click"],
         "on",
         "off")
 
@@ -51,7 +51,7 @@ function init( params ) {
         params,
         "LichterKette",
         "zwave/Lichterkette/37/0/targetValue/set",
-        ["brightness_up_click"],
+        ["arrow_right_click"],
         "true",
         "false")
 
@@ -59,7 +59,7 @@ function init( params ) {
         params,
         "Wohnzimmer_Wandschalter1",
         "zwave/Wandschalter1/37/1/targetValue/set",
-        ["brightness_down_click"],
+        ["toggle"],
         "true",
         "false")
 
@@ -73,8 +73,8 @@ function init( params ) {
         "WZ_Decken_Slider",
         WZLichtGroup,
         //["zigbee2mqtt/Wohnzimmer1/setBrightness"],
-        "arrow_right",
-        "arrow_left",
+        "brightness_up",
+        "brightness_down",
         0,
         255,
         20)
